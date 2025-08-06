@@ -13,6 +13,7 @@ public class InputController : MonoBehaviour
 
     private InputAction _moveAction;
     private InputAction _interactAction;
+    private InputAction _openInvAction;
 
     private Rigidbody2D _rb;
     private PlayerInput _playerInput;
@@ -30,6 +31,7 @@ public class InputController : MonoBehaviour
         InputActionMap map = _playerInput.actions.FindActionMap("Player");
         _moveAction = map.FindAction("Move");
         _interactAction = map.FindAction("Interact");
+        _openInvAction = map.FindAction("OpenInv");
     }
 
     private void OnEnable()
@@ -46,12 +48,14 @@ public class InputController : MonoBehaviour
     {
         _interactAction.performed += _interactAction_performed;
         _moveAction.canceled += _moveAction_canceled;
+        _openInvAction.performed += _openInvAction_performed;
     }
 
     private void UnsubEvents()
     {
         _interactAction.performed -= _interactAction_performed;
         _moveAction.canceled -= _moveAction_canceled;
+        _openInvAction.performed -= _openInvAction_performed;
     }
 
     private void _moveAction_canceled(InputAction.CallbackContext obj)
@@ -63,6 +67,11 @@ public class InputController : MonoBehaviour
     private void _interactAction_performed(InputAction.CallbackContext obj)
     {
         _target?.OnInteract();
+    }
+
+    private void _openInvAction_performed(InputAction.CallbackContext obj)
+    {
+        InventorySystem.Instance.OpenInventory(GetComponent<Inventory>());
     }
 
     private void FixedUpdate()

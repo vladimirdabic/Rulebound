@@ -13,19 +13,19 @@ public class DialogueSystem : MonoBehaviour
     public static DialogueSystem Instance;
 
     [Header("UI References")]
-    public GameObject dialoguePanel;
-    public TMP_Text messageText;
-    public Image portraitImage;
-    public Transform choicesParent;
-    public GameObject choiceButtonPrefab;
+    public GameObject DialoguePanel;
+    public TMP_Text MessageText;
+    public Image PortraitImage;
+    public Transform ChoicesParent;
+    public GameObject ChoiceButtonPrefab;
 
     [Header("Input References")]
     [SerializeField] private PlayerInput _playerInput;
 
-    public event UnityAction<Dialogue> OnDialogueStarted;
-    public event UnityAction<Dialogue> OnDialogueEnded;
-    public event UnityAction<DialogueLine> OnLineStarted;
-    public event UnityAction<DialogueLine> OnLineEnded;
+    public event Action<Dialogue> OnDialogueStarted;
+    public event Action<Dialogue> OnDialogueEnded;
+    public event Action<DialogueLine> OnLineStarted;
+    public event Action<DialogueLine> OnLineEnded;
 
     private IEnumerator _lineEnumerator;
     private DialogueLine _currentLine;
@@ -46,20 +46,10 @@ public class DialogueSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        SubEvents();
-    }
-
-    private void OnDisable()
-    {
-        UnsubEvents();
-    }
-
-    private void SubEvents()
-    {
         _advanceAction.performed += _advanceAction_performed;
     }
 
-    private void UnsubEvents()
+    private void OnDisable()
     {
         _advanceAction.performed -= _advanceAction_performed;
     }
@@ -80,11 +70,25 @@ public class DialogueSystem : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Dialogue");
         _currentLine = line;
 
-        dialoguePanel.SetActive(true);
-        portraitImage.sprite = line.Portrait != null ? line.Portrait : _currentDialog.MainPortrait;
+        DialoguePanel.SetActive(true);
+        PortraitImage.sprite = line.Portrait != null ? line.Portrait : _currentDialog.MainPortrait;
         _finished = false;
 
-        //ClearChoices();
+        // Magic numbers, too lazy to turn them into constants...
+        if(PortraitImage.sprite == null)
+        {
+            MessageText.rectTransform.anchoredPosition = new Vector2(19f, -12.1f);
+            MessageText.rectTransform.sizeDelta = new Vector2(540.28f, 112.8449f);
+            PortraitImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            MessageText.rectTransform.anchoredPosition = new Vector2(131.4894f, -12.1f);
+            MessageText.rectTransform.sizeDelta = new Vector2(427.7867f, 112.8449f);
+            PortraitImage.gameObject.SetActive(true);
+        }
+
+        // TODO: Branching paths
         //if (line.IsBranching) {}
 
         OnLineStarted?.Invoke(line);
@@ -106,11 +110,11 @@ public class DialogueSystem : MonoBehaviour
 
     private IEnumerator WriteText()
     {
-        messageText.text = string.Empty;
+        MessageText.text = string.Empty;
 
         for(int i = 0; i < _currentLine.Message.Length; i++)
         {
-            messageText.text += _currentLine.Message[i];
+            MessageText.text += _currentLine.Message[i];
             yield return new WaitForSeconds(0.03f);
         }
 
@@ -127,7 +131,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void EndDialogue()
     {
-        dialoguePanel.SetActive(false);
+        DialoguePanel.SetActive(false);
         _playerInput.SwitchCurrentActionMap("Player");
         OnDialogueEnded?.Invoke(_currentDialog);
     }
