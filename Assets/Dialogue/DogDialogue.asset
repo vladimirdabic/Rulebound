@@ -18,7 +18,9 @@ MonoBehaviour:
     Portrait: {fileID: 0}
     IsBranching: 0
     Choices: []
+    SecondsBefore: 0
   - Message: '* ...or just obedient?'
     Portrait: {fileID: 0}
     IsBranching: 0
     Choices: []
+    SecondsBefore: 0
