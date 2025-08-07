@@ -18,6 +18,9 @@ public class DialogueLine
     public Sprite Portrait;
     public bool IsBranching;
     public DialogueChoice[] Choices;
+
+    [Header("Delays")]
+    public float SecondsBefore;
     // TODO: Voice sound
 }
 

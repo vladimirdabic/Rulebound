@@ -41,7 +41,7 @@ public class WaypointHandler : MonoBehaviour
 
         other.transform.position = newPosition;
         Confiner.BoundingShape2D = CameraBounds;
-        //Confiner.InvalidateBoundingShapeCache();
+        Confiner.InvalidateBoundingShapeCache();
     }
 
     Vector3 RelativeJump(Transform tr)

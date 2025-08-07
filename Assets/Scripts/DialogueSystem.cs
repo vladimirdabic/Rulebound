@@ -37,8 +37,9 @@ public class DialogueSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
-        else Instance = this;
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
+        // Maybe DontDestroyOnLoad would be good here 
 
         InputActionMap map = _playerInput.actions.FindActionMap("Dialogue");
         _advanceAction = map.FindAction("Advance");
@@ -61,16 +62,20 @@ public class DialogueSystem : MonoBehaviour
         _currentDialog = diag;
         OnDialogueStarted?.Invoke(diag);
 
+        _playerInput.SwitchCurrentActionMap("Dialogue");
+        //DialoguePanel.SetActive(true);
+
         _lineEnumerator = diag.Lines.GetEnumerator();
         PlayNextLine();
     }
 
-    private void PlayLine(DialogueLine line)
+    private IEnumerator PlayLine(DialogueLine line)
     {
-        _playerInput.SwitchCurrentActionMap("Dialogue");
-        _currentLine = line;
+        if (line.SecondsBefore > 0)
+            yield return new WaitForSeconds(line.SecondsBefore);
 
         DialoguePanel.SetActive(true);
+        _currentLine = line;
         PortraitImage.sprite = line.Portrait != null ? line.Portrait : _currentDialog.MainPortrait;
         _finished = false;
 
@@ -92,7 +97,15 @@ public class DialogueSystem : MonoBehaviour
         //if (line.IsBranching) {}
 
         OnLineStarted?.Invoke(line);
-        StartCoroutine(WriteText());
+        MessageText.text = string.Empty;
+
+        for (int i = 0; i < _currentLine.Message.Length; i++)
+        {
+            MessageText.text += _currentLine.Message[i];
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        _finished = true;
     }
 
     private void PlayNextLine()
@@ -100,25 +113,12 @@ public class DialogueSystem : MonoBehaviour
         if(_lineEnumerator.MoveNext())
         {
             DialogueLine line = (DialogueLine)_lineEnumerator.Current;
-            PlayLine(line);
+            StartCoroutine(PlayLine(line));
         }
         else
         {
             EndDialogue();
         }
-    }
-
-    private IEnumerator WriteText()
-    {
-        MessageText.text = string.Empty;
-
-        for(int i = 0; i < _currentLine.Message.Length; i++)
-        {
-            MessageText.text += _currentLine.Message[i];
-            yield return new WaitForSeconds(0.03f);
-        }
-
-        _finished = true;
     }
 
     private void _advanceAction_performed(InputAction.CallbackContext obj)

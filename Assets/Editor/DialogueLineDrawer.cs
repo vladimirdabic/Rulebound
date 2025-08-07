@@ -26,6 +26,7 @@ public class DialogueLineDrawer : PropertyDrawer
             var portraitProp = property.FindPropertyRelative("Portrait");
             var isBranchingProp = property.FindPropertyRelative("IsBranching");
             var choicesProp = property.FindPropertyRelative("Choices");
+            var secondsBeforeProp = property.FindPropertyRelative("SecondsBefore");
 
             // Draw Message
             var messageHeight = EditorGUI.GetPropertyHeight(messageProp, true);
@@ -35,6 +36,13 @@ public class DialogueLineDrawer : PropertyDrawer
             // Draw Portrait
             EditorGUI.PropertyField(new Rect(position.x, y, position.width, EditorGUIUtility.singleLineHeight), portraitProp);
             y += EditorGUIUtility.singleLineHeight + 4;
+
+            // Draw Delays
+            var delayHeight = EditorGUI.GetPropertyHeight(secondsBeforeProp, true);
+            EditorGUI.PropertyField(new Rect(position.x, y, position.width, delayHeight), secondsBeforeProp);
+            y += delayHeight + 4;
+
+            //EditorGUI.FloatField(new Rect(position.x, y, position.width, EditorGUIUtility.singleLineHeight), )
 
             // Draw IsBranching
             EditorGUI.PropertyField(new Rect(position.x, y, position.width, EditorGUIUtility.singleLineHeight), isBranchingProp);
@@ -61,6 +69,7 @@ public class DialogueLineDrawer : PropertyDrawer
 
         height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("Message"), true) + 4;
         height += EditorGUIUtility.singleLineHeight + 4; // Portrait
+        height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("SecondsBefore"), true) + 4; // SecondsBefore
         height += EditorGUIUtility.singleLineHeight + 4; // IsBranching
 
         if (property.FindPropertyRelative("IsBranching").boolValue)

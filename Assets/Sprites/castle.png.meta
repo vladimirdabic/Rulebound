@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ed46c3ee7d9616f439d3a18bb98e2afb
+guid: 11d3a267e4f323242864753015e3c42c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7501201644240826356
-    second: horse_0
+      213: -5119980863986964875
+    second: castle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: horse_0
+      name: castle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c00137ef8d066e790800000000000000
-      internalID: -7501201644240826356
+      spriteID: 5766241f78c22f8b0800000000000000
+      internalID: -5119980863986964875
       vertices: []
       indices: 
       edges: []
@@ -171,7 +171,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      castle_0: -5119980863986964875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

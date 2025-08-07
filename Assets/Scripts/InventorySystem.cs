@@ -72,8 +72,8 @@ public class InventorySystem : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
-        else Instance = this;
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
 
         InputActionMap map = _playerInput.actions.FindActionMap("Inventory");
         _selectAction = map.FindAction("Select");

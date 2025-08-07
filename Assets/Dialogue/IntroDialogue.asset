@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98cebeeba1f3ea24fa52388826bde872, type: 3}
-  m_Name: HorseDiag
+  m_Name: IntroDialogue
   m_EditorClassIdentifier: 
-  MainPortrait: {fileID: -4764492561997394921, guid: 6735cb99ee07f9e4d9be43f42a7c176f, type: 3}
+  MainPortrait: {fileID: 0}
   Lines:
-  - Message: '* Hello'
+  - Message: '* ...'
     Portrait: {fileID: 0}
     IsBranching: 0
-    Choices:
-    - Choice: 
-      NextDialogue: {fileID: 0}
-  - Message: '* I am a horse'
-    Portrait: {fileID: 0}
-    IsBranching: 1
-    Choices:
-    - Choice: 
-      NextDialogue: {fileID: 0}
-  - Message: '* Bye'
+    Choices: []
+    SecondsBefore: 1.5
+  - Message: '* Please collect the THREE RULES'
     Portrait: {fileID: 0}
     IsBranching: 0
-    Choices:
-    - Choice: 
-      NextDialogue: {fileID: 11400000}
+    Choices: []
+    SecondsBefore: 0
+  - Message: '* They are scattered'
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: '* You are needed'
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
