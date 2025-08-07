@@ -15,4 +15,12 @@ public class Inventory : MonoBehaviour
     {
         return Items.Any(i => i.Name == name);
     }
+
+    public bool AddItem(ItemData item)
+    {
+        if(HasItem(item.Name)) return false;
+
+        Items.Add(item);
+        return true;
+    }
 }

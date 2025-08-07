@@ -7,13 +7,13 @@ public class InstantDialogue : MonoBehaviour
 
     private void Start()
     {
-        DialogueSystem.Instance.OnDialogueEnded += Instance_OnDialogueEnded;
+        DialogueSystem.OnDialogueEnded += Instance_OnDialogueEnded;
         DialogueSystem.Instance.PlayDialogue(Dialogue);
     }
 
     public void OnDestroy()
     {
-        DialogueSystem.Instance.OnDialogueEnded -= Instance_OnDialogueEnded;
+        DialogueSystem.OnDialogueEnded -= Instance_OnDialogueEnded;
     }
 
     private void Instance_OnDialogueEnded(Dialogue obj)

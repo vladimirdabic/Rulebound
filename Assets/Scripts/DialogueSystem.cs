@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
@@ -22,10 +23,10 @@ public class DialogueSystem : MonoBehaviour
     [Header("Input References")]
     [SerializeField] private PlayerInput _playerInput;
 
-    public event Action<Dialogue> OnDialogueStarted;
-    public event Action<Dialogue> OnDialogueEnded;
-    public event Action<DialogueLine> OnLineStarted;
-    public event Action<DialogueLine> OnLineEnded;
+    public static event Action<Dialogue> OnDialogueStarted;
+    public static event Action<Dialogue> OnDialogueEnded;
+    public static event Action<DialogueLine> OnLineStarted;
+    public static event Action<DialogueLine> OnLineEnded;
 
     private IEnumerator _lineEnumerator;
     private DialogueLine _currentLine;
@@ -72,7 +73,10 @@ public class DialogueSystem : MonoBehaviour
     private IEnumerator PlayLine(DialogueLine line)
     {
         if (line.SecondsBefore > 0)
+        {
+            DialoguePanel.SetActive(false);
             yield return new WaitForSeconds(line.SecondsBefore);
+        }
 
         DialoguePanel.SetActive(true);
         _currentLine = line;

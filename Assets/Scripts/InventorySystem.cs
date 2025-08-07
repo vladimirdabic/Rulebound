@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
@@ -34,8 +35,8 @@ public class InventorySystem : MonoBehaviour
 
     private Dialogue _droppedItemDiag;
 
-    public event Action<ItemData, Inventory> ItemUsed;
-    public event Action<ItemData, Inventory> ItemDropped;
+    public static event Action<ItemData, Inventory> ItemUsed;
+    public static event Action<ItemData, Inventory> ItemDropped;
 
     private enum InventoryState
     {
@@ -95,7 +96,7 @@ public class InventorySystem : MonoBehaviour
 
     private void Start()
     {
-        DialogueSystem.Instance.OnDialogueEnded += DiagFinished;
+        DialogueSystem.OnDialogueEnded += DiagFinished;
     }
 
     private void OnEnable()
@@ -118,7 +119,7 @@ public class InventorySystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        DialogueSystem.Instance.OnDialogueEnded -= DiagFinished;
+        DialogueSystem.OnDialogueEnded -= DiagFinished;
     }
 
     private void _moveAction_performed(InputAction.CallbackContext obj)
