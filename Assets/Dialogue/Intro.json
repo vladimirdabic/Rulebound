@@ -1,0 +1,15 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "main",
+			"lines": [
+				{ "text": "* ...", "secondsBefore": 2 },
+				{ "text": "* Please collect the THREE RULES" },
+				{ "text": "* They are scattered" },
+				{ "text": "* You are needed" }
+			],
+			"choices": []
+		}
+	]
+}

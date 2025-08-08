@@ -1,0 +1,12 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "main",
+			"lines": [
+				{ "text": "* This is the other side" }
+			],
+			"choices": []
+		}
+	]
+}

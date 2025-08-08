@@ -1,0 +1,12 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "main",
+			"lines": [
+				{ "text": "* You shall not pass" }
+			],
+			"choices": []
+		}
+	]
+}

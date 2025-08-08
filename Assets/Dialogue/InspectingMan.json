@@ -3,7 +3,7 @@
 	"dialogue": [
 		{
 			"id": "main",
-			"portrait": "inspectingman",
+			"portrait": "Sprites/inspectingman",
 			"lines": [
 				{ "text": "* Woah buddy, do\n  you mind?" },
                 { "text": "* I'm trying to inspect\n  this fine stump" },
@@ -18,13 +18,13 @@
 		},
         {
             "id": "oneofwhat",
-			"portrait": "inspectingman",
+			"portrait": "Sprites/inspectingman",
 			"lines": [
 				{ "text": "* ... One of the ones\n  who don't belong" },
 				{ "text": "* Shadows of\n  something bigger" },
 				{ "text": "* You come here with \n  empty hands, and you \n  always leave the same way" },
 				{ "text": "* I've seen it before" },
-				{ "text": "* I'll see it againe" }
+				{ "text": "* I'll see it again" }
 			],
 			"choices": [
 				{ "text": "Where am I?", "next": "whereami" },
@@ -34,7 +34,7 @@
         },
         {
             "id": "whereami",
-			"portrait": "inspectingman",
+			"portrait": "Sprites/inspectingman",
 			"lines": [
 				{ "text": "* ... the Game World?" },
                 { "text": "* Sorry-I always forget\n  that you don't know", "secondsBefore": 1 }

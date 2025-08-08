@@ -1,0 +1,13 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "main",
+			"portrait": "Tilesets/entities_14",
+			"lines": [
+				{ "text": "* If you follow all the\n  rules... does that make\n  you good?" }
+			],
+			"choices": []
+		}
+	]
+}

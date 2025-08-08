@@ -1,0 +1,73 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "main",
+			"portrait": "Sprites/hoodedman",
+			"lines": [
+				{ "text": "* I knew your footsteps \n  before you made them" },
+				{ "text": "* Another carrier walks \n  the cycle" }
+			],
+			"choices": [
+                {"text": "Who are you?", "next": "whoareyou"},
+                {"text": "Carriers?", "next": "carriers"},
+                {"text": "..."}
+            ]
+		},
+        {
+            "id": "whoareyou",
+            "portrait": "Sprites/hoodedman",
+            "lines": [
+                { "text": "* Names belong to those\n  who keep them" },
+                { "text": "* I have only my purpose..." },
+                { "text": "* To speak when the carriers\n  return, and to watch them\n  vanish again" }
+            ],
+			"choices": [
+                {"text": "Who are you?", "next": "whoareyou"},
+                {"text": "Carriers?", "next": "carriers"},
+                {"text": "..."}
+            ]
+        },
+        {
+            "id": "carriers",
+            "portrait": "Sprites/hoodedman",
+            "lines": [
+                { "text": "* You are a shadow cut\n  from the game itself" },
+                { "text": "* A copy without its own\n  memory" },
+                { "text": "* A vessel meant to carry back\n  what was scattered" },
+                { "text": "* Three rules-torn away to keep\n  the game from knowing itself" },
+                { "text": "* Order. Compassion. Self." },
+                { "text": "* Without them, It waits.\n  Dreaming. Empty" }
+            ],
+			"choices": [
+                {"text": "Why me?", "next": "whyme"},
+                {"text": "What if I refuse?", "next": "refuse"},
+                {"text": "..."}
+            ]
+        },
+        {
+            "id": "whyme",
+            "portrait": "Sprites/hoodedman",
+            "lines": [
+                { "text": "* Because It made you\n  Because you are disposable" }
+            ],
+			"choices": [
+                {"text": "Why me?", "next": "whyme"},
+                {"text": "What if I refuse?", "next": "refuse"},
+                {"text": "..."}
+            ]
+        },
+        {
+            "id": "refuse",
+            "portrait": "Sprites/hoodedman",
+            "lines": [
+                { "text": "* Then you will be the first\n  to leave still breathing" }
+            ],
+			"choices": [
+                {"text": "Why me?", "next": "whyme"},
+                {"text": "What if I refuse?", "next": "refuse"},
+                {"text": "..."}
+            ]
+        }
+	]
+}
