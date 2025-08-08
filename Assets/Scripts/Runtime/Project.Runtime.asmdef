@@ -1,0 +1,16 @@
+{
+    "name": "Project.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b3775cdb4a16acf4b899e1b2276eb5d8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

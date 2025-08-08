@@ -3,9 +3,10 @@
 	"dialogue": [
 		{
 			"id": "main",
-			"portrait": "Tilesets/entities_14",
+			"portrait": "Sprites/dog",
 			"lines": [
-				{ "text": "* If you follow all the\n  rules... does that make\n  you good?" }
+				{ "text": "* If you follow all the\n  rules... does that make\n  you good?" },
+				{ "text": "* ...or just obedient?" }
 			],
 			"choices": []
 		}

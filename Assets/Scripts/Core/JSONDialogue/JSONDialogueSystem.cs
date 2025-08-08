@@ -47,7 +47,6 @@ public class JSONDialogueSystem : MonoBehaviour
     private InputAction _upAction;
     private InputAction _downAction;
     private InputAction _skipAction;
-    //private bool _finished;
     private State _state;
 
     private enum State
@@ -121,11 +120,52 @@ public class JSONDialogueSystem : MonoBehaviour
         }
 
         _currentLine = line;
+        
+        // I don't really like how big this function is
+        // because of these special instructions...
+        if(line.condition != null)
+        {
+            DialogueFlag flag = GetFlag(GlobalFlags, line.condition) ?? GetFlag(_currentDialogFile.Flags, line.condition);
+
+            if(flag.Value)
+            {
+                if (line.next == null)
+                {
+                    EndDialogue();
+                    yield break;
+                }
+
+                JSONDialogue next = _currentDialogFile.GetDialogue(line.next);
+                OnDialogueEnded?.Invoke(_currentDialog);
+                PlayDialogue(next);
+                yield break;
+            }
+            else
+            {
+                PlayNextLine();
+                yield break;
+            }
+        }
+
+        if(line.set != null)
+        {
+            DialogueFlag flag = GetFlag(GlobalFlags, line.set) ?? GetFlag(_currentDialogFile.Flags, line.set);
+            flag.Value = true;
+            PlayNextLine();
+            yield break;
+        }
+
+        if (line.unset != null)
+        {
+            DialogueFlag flag = GetFlag(GlobalFlags, line.unset) ?? GetFlag(_currentDialogFile.Flags, line.unset);
+            flag.Value = false;
+            PlayNextLine();
+            yield break;
+        }
+
+
         DialoguePanel.SetActive(true);
         PortraitImage.sprite = line.Portrait != null ? line.Portrait : _currentDialog.MainPortrait;
-
-        // TODO: Handle condition, set
-
         _state = State.WRITING;
 
         // Magic numbers, too lazy to turn them into constants...
@@ -183,8 +223,6 @@ public class JSONDialogueSystem : MonoBehaviour
 
     private void _advanceAction_performed(InputAction.CallbackContext obj)
     {
-        //if (!_finished) return;
-
         switch(_state)
         {
             case State.WAITING:
@@ -242,6 +280,19 @@ public class JSONDialogueSystem : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Player");
         OnDialogueEnded?.Invoke(_currentDialog);
         OnDialogueFileEnded?.Invoke(_currentDialogFile);
+    }
+
+    public DialogueFlag GetGlobalFlag(string name)
+    {
+        return GetFlag(GlobalFlags, name);
+    }
+
+    private DialogueFlag GetFlag(List<DialogueFlag> flags, string name)
+    {
+        foreach (DialogueFlag flag in flags)
+            if (flag.Name == name) return flag;
+
+        return null;
     }
 
     // Taken from InventorySystem

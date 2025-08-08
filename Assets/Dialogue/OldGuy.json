@@ -1,0 +1,27 @@
+{
+	"flags": [
+        { "name": "talkedtolk", "global": true }
+    ],
+	"dialogue": [
+		{
+			"id": "main",
+			"portrait": "Sprites/oldguy",
+			"lines": [
+                { "condition": "talkedtolk", "next": "advice" },
+				{ "text": "* Uhh..\n  Heya kid..." },
+				{ "text": "* You should probably go\n  talk to the Lorekeeper" },
+				{ "text": "* He's at the town church" },
+				{ "text": "* Come back once you've\n  done that" }
+			],
+			"choices": []
+		},
+        {
+            "id": "advice",
+            "portrait": "Sprites/oldguy",
+            "lines": [
+                {"text": "* alright"}
+            ],
+            "choices": []
+        }
+	]
+}
