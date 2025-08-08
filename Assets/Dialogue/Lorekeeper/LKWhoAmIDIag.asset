@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cebeeba1f3ea24fa52388826bde872, type: 3}
+  m_Name: LKWhoAmIDIag
+  m_EditorClassIdentifier: 
+  MainPortrait: {fileID: 21300000, guid: eb4059e4002448847a67eabc38795c3c, type: 3}
+  Lines:
+  - Message: "* You are a shadow cut\n  from the game itself"
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: "* A copy without its own\n  memory"
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: "* A vessel meant to carry back\n  what was scattered"
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: "* Three rules\u2014torn away to keep\n  the game from knowing itself"
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: '* Order. Compassion. Self.'
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: "* Without them, It waits.\n  Dreaming. Empty"
+    Portrait: {fileID: 0}
+    IsBranching: 0
+    Choices: []
+    SecondsBefore: 0
+  - Message: 
+    Portrait: {fileID: 0}
+    IsBranching: 1
+    Choices:
+    - Choice: Why me?
+      NextDialogue: {fileID: 11400000, guid: d29f3e314c420cf42b8e88bfc5a81ba1, type: 2}
+    - Choice: What if I refuse?
+      NextDialogue: {fileID: 11400000, guid: bfbbb0387637683419047b91cfcbeb06, type: 2}
+    SecondsBefore: 0

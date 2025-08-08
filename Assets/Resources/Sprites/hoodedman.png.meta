@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: df21a11e861b75f4f8eee70058e06bbf
+guid: eb4059e4002448847a67eabc38795c3c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7168540986364394743
-    second: sign_0
+      213: -757337359454045792
+    second: hoodedman_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sign_0
+      name: hoodedman_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 20
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7fcf31aeb06cb7360800000000000000
-      internalID: 7168540986364394743
+      spriteID: 0a9fb922fa56d75f0800000000000000
+      internalID: -757337359454045792
       vertices: []
       indices: 
       edges: []
@@ -172,7 +172,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sign_0: 7168540986364394743
+      hoodedman_0: -757337359454045792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

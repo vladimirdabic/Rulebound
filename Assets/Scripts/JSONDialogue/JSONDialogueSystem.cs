@@ -1,18 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
-public class DialogueSystem : MonoBehaviour
+public class JSONDialogueSystem : MonoBehaviour
 {
-    public static DialogueSystem Instance;
+    public static JSONDialogueSystem Instance;
 
     [Header("Dialog References")]
     public GameObject DialoguePanel;
@@ -30,14 +27,20 @@ public class DialogueSystem : MonoBehaviour
     [Header("Input References")]
     [SerializeField] private PlayerInput _playerInput;
 
-    public static event Action<Dialogue> OnDialogueStarted;
-    public static event Action<Dialogue> OnDialogueEnded;
-    public static event Action<DialogueLine> OnLineStarted;
-    public static event Action<DialogueLine> OnLineEnded;
+    [Header("Other")]
+    public List<DialogueFlag> GlobalFlags;
+
+    public static event Action<JSONDialogue> OnDialogueStarted;
+    public static event Action<JSONDialogue> OnDialogueEnded;
+    public static event Action<JSONDialogueFile> OnDialogueFileStarted;
+    public static event Action<JSONDialogueFile> OnDialogueFileEnded;
+    public static event Action<JSONDialogueLine> OnLineStarted;
+    public static event Action<JSONDialogueLine> OnLineEnded;
 
     private IEnumerator _lineEnumerator;
-    private DialogueLine _currentLine;
-    private Dialogue _currentDialog;
+    private JSONDialogueFile _currentDialogFile;
+    private JSONDialogue _currentDialog;
+    private JSONDialogueLine _currentLine;
     private int _choiceIdx;
     
     private InputAction _advanceAction;
@@ -81,44 +84,48 @@ public class DialogueSystem : MonoBehaviour
         _skipAction.performed -= _skipAction_performed;
     }
 
-    public void PlayDialogue(Dialogue diag)
+    public void PlayDialogue(JSONDialogueFile diag)
     {
-        if (diag.Lines == null || diag.Lines.Length == 0) return;
+        if (diag.dialogue == null || diag.dialogue.Length == 0) return;
 
-        _currentDialog = diag;
-        OnDialogueStarted?.Invoke(diag);
+        diag.Init();
+        _currentDialogFile = diag;
+        _currentDialog = diag.GetDialogue("main");
+        
+        OnDialogueFileStarted?.Invoke(_currentDialogFile);
+        OnDialogueStarted?.Invoke(_currentDialog);
 
         _playerInput.SwitchCurrentActionMap("Dialogue");
-        //DialoguePanel.SetActive(true);
 
-        _lineEnumerator = diag.Lines.GetEnumerator();
+        _lineEnumerator = _currentDialog.lines.GetEnumerator();
         PlayNextLine();
     }
 
-    private IEnumerator PlayLine(DialogueLine line)
+    private void PlayDialogue(JSONDialogue diag)
     {
-        if (line.SecondsBefore > 0)
+        _currentDialog = diag;
+        OnDialogueStarted?.Invoke(_currentDialog);
+
+        _playerInput.SwitchCurrentActionMap("Dialogue");
+
+        _lineEnumerator = _currentDialog.lines.GetEnumerator();
+        PlayNextLine();
+    }
+
+    private IEnumerator PlayLine(JSONDialogueLine line)
+    {
+        if (line.secondsBefore > 0)
         {
             DialoguePanel.SetActive(false);
-            yield return new WaitForSeconds(line.SecondsBefore);
+            yield return new WaitForSeconds(line.secondsBefore);
         }
 
         _currentLine = line;
-
-        if (line.IsBranching)
-        {
-            ChoiceText.text = line.Message;
-            Choices.text = string.Join('\n', line.Choices.Select(i => i.Choice));
-            _choiceIdx = 0;
-            ChoicePanel.SetActive(true);
-            MoveSelectorToChoice();
-            _state = State.CHOICE;
-            yield break;
-        }
-
         DialoguePanel.SetActive(true);
         PortraitImage.sprite = line.Portrait != null ? line.Portrait : _currentDialog.MainPortrait;
-        //_finished = false;
+
+        // TODO: Handle condition, set
+
         _state = State.WRITING;
 
         // Magic numbers, too lazy to turn them into constants...
@@ -138,15 +145,15 @@ public class DialogueSystem : MonoBehaviour
         OnLineStarted?.Invoke(line);
         MessageText.text = string.Empty;
 
-        for (int i = 0; i < _currentLine.Message.Length; i++)
+        for (int i = 0; i < _currentLine.text.Length; i++)
         {
             if (_state == State.WAITING) break;
 
-            MessageText.text += _currentLine.Message[i];
+            MessageText.text += _currentLine.text[i];
             yield return new WaitForSeconds(0.03f);
         }
 
-        MessageText.text = _currentLine.Message;
+        MessageText.text = _currentLine.text;
         _state = State.WAITING;
     }
 
@@ -154,11 +161,22 @@ public class DialogueSystem : MonoBehaviour
     {
         if(_lineEnumerator.MoveNext())
         {
-            DialogueLine line = (DialogueLine)_lineEnumerator.Current;
+            JSONDialogueLine line = (JSONDialogueLine)_lineEnumerator.Current;
             StartCoroutine(PlayLine(line));
         }
         else
         {
+            if (_currentDialog.choices != null && _currentDialog.choices.Length != 0)
+            {
+                ChoiceText.text = _currentDialog.choiceText ?? string.Empty;
+                Choices.text = string.Join('\n', _currentDialog.choices.Select(i => i.text));
+                _choiceIdx = 0;
+                ChoicePanel.SetActive(true);
+                MoveSelectorToChoice();
+                _state = State.CHOICE;
+                return;
+            }
+
             EndDialogue();
         }
     }
@@ -175,16 +193,17 @@ public class DialogueSystem : MonoBehaviour
                 break;
 
             case State.CHOICE:
-                DialogueChoice choice = _currentLine.Choices[_choiceIdx];
+                JSONDialogueChoice choice = _currentDialog.choices[_choiceIdx];
 
-                if(choice.NextDialogue == null)
+                if(choice.next == null)
                 {
                     EndDialogue();
                     return;
                 }
 
-                PlayDialogue(choice.NextDialogue);
                 ChoicePanel.SetActive(false);
+                OnDialogueEnded?.Invoke(_currentDialog);
+                PlayDialogue(_currentDialogFile.GetDialogue(choice.next));
                 break;
 
             default:
@@ -209,7 +228,7 @@ public class DialogueSystem : MonoBehaviour
                 break;
 
             case "Down":
-                _choiceIdx = Mathf.Min(++_choiceIdx, _currentLine.Choices.Length - 1);
+                _choiceIdx = Mathf.Min(++_choiceIdx, _currentDialog.choices.Length - 1);
                 break;
         }
 
@@ -222,6 +241,7 @@ public class DialogueSystem : MonoBehaviour
         ChoicePanel.SetActive(false);
         _playerInput.SwitchCurrentActionMap("Player");
         OnDialogueEnded?.Invoke(_currentDialog);
+        OnDialogueFileEnded?.Invoke(_currentDialogFile);
     }
 
     // Taken from InventorySystem
