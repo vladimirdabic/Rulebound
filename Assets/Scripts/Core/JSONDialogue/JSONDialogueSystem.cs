@@ -83,13 +83,13 @@ public class JSONDialogueSystem : MonoBehaviour
         _skipAction.performed -= _skipAction_performed;
     }
 
-    public void PlayDialogue(JSONDialogueFile diag)
+    public void PlayDialogue(JSONDialogueFile diag, string id = "main")
     {
         if (diag.dialogue == null || diag.dialogue.Length == 0) return;
 
         diag.Init();
         _currentDialogFile = diag;
-        _currentDialog = diag.GetDialogue("main");
+        _currentDialog = diag.GetDialogue(id);
         
         OnDialogueFileStarted?.Invoke(_currentDialogFile);
         OnDialogueStarted?.Invoke(_currentDialog);
@@ -188,6 +188,19 @@ public class JSONDialogueSystem : MonoBehaviour
         for (int i = 0; i < _currentLine.text.Length; i++)
         {
             if (_state == State.WAITING) break;
+
+            // quick & dirty richtext detection
+            if (_currentLine.text[i] == '<')
+            {
+                int closingIndex = _currentLine.text.IndexOf('>', i);
+                if (closingIndex != -1)
+                {
+                    string tag = _currentLine.text.Substring(i, closingIndex - i + 1);
+                    MessageText.text += tag;
+                    i = closingIndex;
+                    continue;
+                }
+            }
 
             MessageText.text += _currentLine.text[i];
             yield return new WaitForSeconds(0.03f);

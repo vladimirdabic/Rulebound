@@ -18,20 +18,21 @@ public class JSONDialogueFile
         Initialized = true;
         Flags = new List<DialogueFlag>();
 
-        foreach(JSONDialogueFlag flag in flags)
-        {
-            DialogueFlag diagFlag = new DialogueFlag(flag.name, flag.value);
+        if(flags != null)
+            foreach(JSONDialogueFlag flag in flags)
+            {
+                DialogueFlag diagFlag = new DialogueFlag(flag.name, flag.value);
 
-            if (flag.global)
-            {
-                if(JSONDialogueSystem.Instance.GetGlobalFlag(flag.name) == null)
-                    JSONDialogueSystem.Instance.GlobalFlags.Add(diagFlag);
+                if (flag.global)
+                {
+                    if(JSONDialogueSystem.Instance.GetGlobalFlag(flag.name) == null)
+                        JSONDialogueSystem.Instance.GlobalFlags.Add(diagFlag);
+                }
+                else
+                {
+                    Flags.Add(diagFlag);
+                }
             }
-            else
-            {
-                Flags.Add(diagFlag);
-            }
-        }
 
         foreach(JSONDialogue diag in dialogue)
             diag.Init();

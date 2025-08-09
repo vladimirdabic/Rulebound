@@ -5,7 +5,7 @@
 			"id": "main",
 			"portrait": "Sprites/hatman",
 			"lines": [
-				{ "text": "* Sometimes the machine\n  whispers when it thinks\n  no one's listening..." }
+				{ "text": "* Sometimes the <color=\"yellow\">machine</color>\n  whispers when it thinks\n  no one's listening..." }
 			],
 			"choices": []
 		}

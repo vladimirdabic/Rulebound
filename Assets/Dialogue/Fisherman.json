@@ -10,7 +10,7 @@
 				{ "text": "* Wait... you look...\n  different", "secondsBefore": 1.5 },
 				{ "text": "* Is it still you?" },
 				{ "text": "* Why'd you come back here?\n  Was it your choice? Or...", "secondsBefore": 1.5 },
-				{ "text": "* ...did It bring you?", "secondsBefore": 1.5 }
+				{ "text": "* ...did <color=\"yellow\">It</color> bring you?", "secondsBefore": 1.5 }
 			],
 			"choices": []
 		}

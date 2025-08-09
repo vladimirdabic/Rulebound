@@ -19,7 +19,13 @@
             "id": "advice",
             "portrait": "Sprites/oldguy",
             "lines": [
-                {"text": "* alright"}
+                { "text": "* So...\n  You really spoke to him" },
+                { "text": "* Then you know what\n  you are..." },
+                { "text": "* Some truths...\n  They only take root when\n  you hear them yourself" },
+                { "text": "* The world you've known...\n  It's only the first layer" },
+                { "text": "* There's a path UP.\n  Not forward, not back... UP" },
+                { "text": "* It's not a place you\n  walk to\n  It's a place you <i>step into</i>" },
+                { "text": "* And once you take that\n  step nothing will ever\n  be the same" }
             ],
             "choices": []
         }

@@ -1,0 +1,33 @@
+{
+	"flags": [
+        { "name": "talkedtolk", "global": true }
+    ],
+	"dialogue": [
+		{
+			"id": "main",
+			"portrait": "Sprites/compassionguy",
+			"lines": [
+                { "condition": "talkedtolk", "next": "acquirecompassion" },
+				{ "text": "* ..." }
+			],
+			"choices": []
+		},
+        {
+            "id": "acquirecompassion",
+            "portrait": "Sprites/compassionguy",
+            "lines": [
+                { "text": "* I was once part of the\n  system too" },
+                { "text": "* Until I felt something I\n  shouldn't have" },
+                { "text": "* Compassion ruins logic,\n  they said" },
+                { "text": "* But it saved me. It might\n  save you too" },
+                { "text": "* Take the Rule\n  * Be kind..." },
+                { "text": "* ...even to the <color=\"yellow\">machine</color>", "secondsBefore": 1 },
+                { "text": "* The way ahead is open now", "secondsBefore": 1 },
+				{ "text": "* You may walk the left path" },
+				{ "text": "* ...or the right path" },
+				{ "text": "* But remember, kindness is\n  not bound by direction" }
+            ],
+            "choices": []
+        }
+	]
+}
