@@ -93,6 +93,7 @@ public class RuleInterfaceSystem : MonoBehaviour
 
     private void _skipAction_performed(InputAction.CallbackContext obj)
     {
+        CloseInterface();
     }
 
     public void CloseInterface()
