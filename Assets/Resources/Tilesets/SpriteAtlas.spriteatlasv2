@@ -13,9 +13,12 @@ SpriteAtlasAsset:
     packables:
     - {fileID: 2800000, guid: 0ce01969e7336e4419d547d77daa2e04, type: 3}
     - {fileID: 2800000, guid: 694dd0792777d7644bbbd9d3c3e8e2c3, type: 3}
+    - {fileID: 2800000, guid: 5534b557be738844095fdb12a85dd0ac, type: 3}
     - {fileID: 2800000, guid: e9f5d4d9658e0144cb49d57f1b04d678, type: 3}
+    - {fileID: 2800000, guid: 060fb9cc532423b40aeeb61b0865d1c0, type: 3}
     - {fileID: 2800000, guid: afefe7bfd3bfecd44871646f6a9a1843, type: 3}
     - {fileID: 2800000, guid: fe993019b45b1454fab95cdac2414eaf, type: 3}
+    - {fileID: 2800000, guid: 8e2cbac93a60f1045bad331f1bbda1c4, type: 3}
     - {fileID: 2800000, guid: ae910ea5512fb5345bc2900fe021f4c6, type: 3}
     - {fileID: 2800000, guid: 1b3818cefc0147846a8b21803aea818e, type: 3}
     - {fileID: 2800000, guid: d93d3594acf54184bacde3ca58b7ed9f, type: 3}
@@ -26,5 +29,8 @@ SpriteAtlasAsset:
     - {fileID: 2800000, guid: 174b240282bf47e49923471ad88ce940, type: 3}
     - {fileID: 2800000, guid: 5743bebc08ccabf419c63e494c6cc1bd, type: 3}
     - {fileID: 2800000, guid: e7dbd92db280aa04d8ccf28368654161, type: 3}
+    - {fileID: 2800000, guid: eb205f7f9957bf540bb4556744c2242f, type: 3}
+    - {fileID: 2800000, guid: 7ba3b1cc09a226c42aaeb52102c30999, type: 3}
+    - {fileID: 2800000, guid: ca81259336d7c234c883888a9bf1da02, type: 3}
   m_IsVariant: 0
   m_ScriptablePacker: {fileID: 0}

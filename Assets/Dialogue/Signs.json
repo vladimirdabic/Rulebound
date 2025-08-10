@@ -1,0 +1,33 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "river",
+			"lines": [
+				{ "text": "* River" }
+			],
+			"choices": []
+		},
+        {
+			"id": "nopass",
+			"lines": [
+				{ "text": "* You shall not pass" }
+			],
+			"choices": []
+		},
+        {
+			"id": "otherside",
+			"lines": [
+				{ "text": "* This is the other side" }
+			],
+			"choices": []
+		},
+        {
+			"id": "town",
+			"lines": [
+				{ "text": "* Town" }
+			],
+			"choices": []
+		}
+	]
+}

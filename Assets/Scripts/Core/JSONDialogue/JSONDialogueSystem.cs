@@ -272,7 +272,9 @@ public class JSONDialogueSystem : MonoBehaviour
 
     private void _choiceActionPeformed(InputAction.CallbackContext obj)
     {
-        switch(obj.action.name)
+        if (_state != State.CHOICE) return;
+
+        switch (obj.action.name)
         {
             case "Up":
                 _choiceIdx = Mathf.Max(--_choiceIdx, 0);

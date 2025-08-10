@@ -192,6 +192,7 @@ public class InventorySystem : MonoBehaviour
                 {
                     case Action.USE:
                         ItemUsed?.Invoke(_inventory.Items[_selectedItemIdx], _inventory);
+                        CloseInventory();
                         break;
 
                     case Action.DROP:
