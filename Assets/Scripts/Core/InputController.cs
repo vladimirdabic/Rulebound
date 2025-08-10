@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,9 @@ public class InputController : MonoBehaviour
     [Header("Player")]
     public float Speed;
 
+    [Header("Dialogue References")]
+    public TextAsset Dialogue;
+
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _openInvAction;
@@ -19,6 +23,7 @@ public class InputController : MonoBehaviour
     private Animator _animator;
 
     private Inventory _inventory;
+    private JSONDialogueFile _dialogueFile;
 
     private Vector3 _inputVector;
     private IInteractable _target;
@@ -29,6 +34,8 @@ public class InputController : MonoBehaviour
         _playerInput = _rb.GetComponent<PlayerInput>();
         _animator = _rb.GetComponent<Animator>();
         _inventory = GetComponent<Inventory>();
+
+        _dialogueFile = JsonUtility.FromJson<JSONDialogueFile>(Dialogue.text);
 
         InputActionMap map = _playerInput.actions.FindActionMap("Player");
         _moveAction = map.FindAction("Move");
@@ -107,7 +114,12 @@ public class InputController : MonoBehaviour
     private void InventorySystem_ItemUsed(ItemData item, Inventory inv)
     {
         if (inv != _inventory) return;
-        if (_target == null || _target.GetType() != typeof(RuleInterfaceEntity)) return;
+        if (_target == null || _target.GetType() != typeof(RuleInterfaceEntity))
+        {
+            if (item.Name.Contains("Rule"))
+                JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "onlyatinterface");
+            return;
+        }
 
         if(RuleInterfaceSystem.Instance.AddRule(item))
         {

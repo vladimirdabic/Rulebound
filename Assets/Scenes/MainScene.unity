@@ -79107,7 +79107,7 @@ Transform:
   m_GameObject: {fileID: 1124237740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.49, y: 0.14, z: 0}
+  m_LocalPosition: {x: -2.49, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82360,6 +82360,7 @@ MonoBehaviour:
   InterfacePanel: {fileID: 1491605261}
   RuleListText: {fileID: 156444740}
   _playerInput: {fileID: 2035021921}
+  Dialogue: {fileID: 4900000, guid: 1fb70f4a8cd9abd46bbe77eed69b92ac, type: 3}
   InsertedRules: []
 --- !u!1 &1574100489
 GameObject:
@@ -98663,6 +98664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
+  Dialogue: {fileID: 4900000, guid: 1fb70f4a8cd9abd46bbe77eed69b92ac, type: 3}
 --- !u!61 &2035021919
 BoxCollider2D:
   m_ObjectHideFlags: 0

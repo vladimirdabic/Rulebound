@@ -16,9 +16,13 @@ public class RuleInterfaceSystem : MonoBehaviour
     [Header("Input References")]
     [SerializeField] private PlayerInput _playerInput;
 
+    [Header("Dialogue References")]
+    [SerializeField] private TextAsset Dialogue;
+
     public List<ItemData> InsertedRules;
-    private InputAction _advanceAction;
-    private InputAction _skipAction;
+    private InputAction _confirmAction;
+    private InputAction _cancelAction;
+    private JSONDialogueFile _dialogueFile;
 
     private static readonly string[] _allowedRules = new string[]
     {
@@ -41,26 +45,28 @@ public class RuleInterfaceSystem : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
-        InputActionMap map = _playerInput.actions.FindActionMap("Dialogue");
-        _advanceAction = map.FindAction("Advance");
-        _skipAction = map.FindAction("Skip");
+        _dialogueFile = JsonUtility.FromJson<JSONDialogueFile>(Dialogue.text);
+
+        InputActionMap map = _playerInput.actions.FindActionMap("Interface");
+        _confirmAction = map.FindAction("Confirm");
+        _cancelAction = map.FindAction("Cancel");
     }
 
     private void OnEnable()
     {
-        _advanceAction.performed += _advanceAction_performed;
-        _skipAction.performed += _skipAction_performed;
+        _confirmAction.performed += _advanceAction_performed;
+        _cancelAction.performed += _skipAction_performed;
     }
 
     private void OnDisable()
     {
-        _advanceAction.performed -= _advanceAction_performed;
-        _skipAction.performed -= _skipAction_performed;
+        _confirmAction.performed -= _advanceAction_performed;
+        _cancelAction.performed -= _skipAction_performed;
     }
 
     public void OpenInterface()
     {
-        _playerInput.SwitchCurrentActionMap("Dialogue");
+        _playerInput.SwitchCurrentActionMap("Interface");
 
         RuleListText.text = string.Empty;
         for(int i = 0; i < InsertedRules.Count; ++i)
@@ -74,11 +80,22 @@ public class RuleInterfaceSystem : MonoBehaviour
 
     private void _advanceAction_performed(InputAction.CallbackContext obj)
     {
-        // TODO
-        throw new System.NotImplementedException();
+        if(InsertedRules.Count < 3)
+        {
+            CloseInterface();
+            JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "missing");
+        }
+        else
+        {
+            // TODO: Goto endgame screen
+        }
     }
 
     private void _skipAction_performed(InputAction.CallbackContext obj)
+    {
+    }
+
+    public void CloseInterface()
     {
         InterfacePanel.SetActive(false);
         _playerInput.SwitchCurrentActionMap("Player");

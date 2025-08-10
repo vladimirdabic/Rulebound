@@ -1,0 +1,23 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "missing",
+			"lines": [
+				{ "text": "* Missing rules" }
+			]
+		},
+        {
+            "id": "onlyatinterface",
+            "lines": [
+                { "text": "* Rule can only be used at the\n  interface" }
+            ]
+        },
+        {
+            "id": "enddialogue",
+            "lines": [
+
+            ]
+        }
+	]
+}
