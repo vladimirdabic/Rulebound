@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Inventory))]
 public class InputController : MonoBehaviour
 {
     [Header("Player")]
@@ -17,6 +18,8 @@ public class InputController : MonoBehaviour
     private PlayerInput _playerInput;
     private Animator _animator;
 
+    private Inventory _inventory;
+
     private Vector3 _inputVector;
     private IInteractable _target;
 
@@ -25,6 +28,7 @@ public class InputController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _playerInput = _rb.GetComponent<PlayerInput>();
         _animator = _rb.GetComponent<Animator>();
+        _inventory = GetComponent<Inventory>();
 
         InputActionMap map = _playerInput.actions.FindActionMap("Player");
         _moveAction = map.FindAction("Move");
@@ -47,6 +51,8 @@ public class InputController : MonoBehaviour
         _interactAction.performed += _interactAction_performed;
         _moveAction.canceled += _moveAction_canceled;
         _openInvAction.performed += _openInvAction_performed;
+
+        InventorySystem.ItemUsed += InventorySystem_ItemUsed;
     }
 
     private void UnsubEvents()
@@ -54,6 +60,8 @@ public class InputController : MonoBehaviour
         _interactAction.performed -= _interactAction_performed;
         _moveAction.canceled -= _moveAction_canceled;
         _openInvAction.performed -= _openInvAction_performed;
+
+        InventorySystem.ItemUsed -= InventorySystem_ItemUsed;
     }
 
     private void _moveAction_canceled(InputAction.CallbackContext obj)
@@ -69,7 +77,7 @@ public class InputController : MonoBehaviour
 
     private void _openInvAction_performed(InputAction.CallbackContext obj)
     {
-        InventorySystem.Instance.OpenInventory(GetComponent<Inventory>());
+        InventorySystem.Instance.OpenInventory(_inventory);
     }
 
     private void FixedUpdate()
@@ -94,5 +102,12 @@ public class InputController : MonoBehaviour
     {
         if (other.TryGetComponent<IInteractable>(out var _))
             _target = null;
+    }
+
+    private void InventorySystem_ItemUsed(ItemData item, Inventory inv)
+    {
+        if (inv != _inventory) return;
+
+        // TODO: Check if target is rule interface, etc.
     }
 }

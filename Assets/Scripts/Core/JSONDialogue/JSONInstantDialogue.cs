@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 public class JSONInstantDialogue : MonoBehaviour
 {
     public TextAsset Dialogue;
+    public string DialogueID = "main";
+    public bool StartMainScene;
+
     private JSONDialogueFile _dialogue;
 
     private void Awake()
@@ -14,7 +17,7 @@ public class JSONInstantDialogue : MonoBehaviour
     private void Start()
     {
         JSONDialogueSystem.OnDialogueFileEnded += Instance_OnDialogueEnded;
-        JSONDialogueSystem.Instance.PlayDialogue(_dialogue);
+        JSONDialogueSystem.Instance.PlayDialogue(_dialogue, DialogueID);
     }
 
     public void OnDestroy()
@@ -24,6 +27,7 @@ public class JSONInstantDialogue : MonoBehaviour
 
     private void Instance_OnDialogueEnded(JSONDialogueFile diag)
     {
+        if (!StartMainScene) return;
         SceneManager.LoadScene("MainScene");
     }
 }

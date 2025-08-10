@@ -1,0 +1,25 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "scientist1",
+            "portrait": "Sprites/scientist",
+			"lines": [
+				{ "text": "* Nothing has happend in hours" },
+				{ "text": "* That's how it works" },
+				{ "text": "* Stillness... until something\n  isn't where it should be" },
+				{ "text": "* Then it acts" }
+			]
+		},
+        {
+			"id": "scientist2",
+            "portrait": "Sprites/scientist",
+			"lines": [
+				{ "text": "* Last week, I sneezed during\n  testing" },
+				{ "text": "* When I came back, every pen\n  on my desk was perfectly\n  parallel" },
+				{ "text": "* It doesn't like disorder" },
+				{ "text": "* And it never forgets" }
+			]
+		}
+	]
+}

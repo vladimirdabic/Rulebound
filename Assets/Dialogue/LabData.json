@@ -1,0 +1,16 @@
+{
+	"flags": [],
+	"dialogue": [
+		{
+			"id": "orderrulereport",
+			"lines": [
+				{ "text": "* Rule of Order - \n  Preliminary Observations" },
+                { "text": "* When isolated, the artifact\n  maintains complete stillness\n* No vibrations, no temperature\n  fluctuation, no detectable emissions" },
+                { "text": "* Interaction begins only when a\n  pattern is broken in its presence" },
+                { "text": "* Misaligned tiles, mismatched\n  footsteps, sentences left\n  unfinished-these seem to \"provoke\"\n  it" },
+                { "text": "* Response manifests as correction.\n  The environment, or the subject,\n  is altered to restore symmetry" },
+                { "text": "* Correction is instantaneous. It is\n  also irreversible" }
+			]
+		}
+	]
+}

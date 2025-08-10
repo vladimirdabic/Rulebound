@@ -625,6 +625,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue: {fileID: 4900000, guid: 937d5062048ec0b4abd7afdfa11ecbc8, type: 3}
+  DialogueID: main
+  StartMainScene: 1
 --- !u!1 &1814213177
 GameObject:
   m_ObjectHideFlags: 0

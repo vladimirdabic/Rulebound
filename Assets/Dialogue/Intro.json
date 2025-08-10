@@ -8,8 +8,13 @@
 				{ "text": "* Please collect the THREE RULES" },
 				{ "text": "* They are scattered" },
 				{ "text": "* You are needed" }
-			],
-			"choices": []
-		}
+			]
+		},
+        {
+            "id": "worldstart",
+            "lines": [
+                { "text": "* Once the rules are collected return\n  to this place and insert them into\n  the <i>interface</i>" }
+            ]
+        }
 	]
 }
