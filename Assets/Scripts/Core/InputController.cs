@@ -107,7 +107,11 @@ public class InputController : MonoBehaviour
     private void InventorySystem_ItemUsed(ItemData item, Inventory inv)
     {
         if (inv != _inventory) return;
+        if (_target == null || _target.GetType() != typeof(RuleInterfaceEntity)) return;
 
-        // TODO: Check if target is rule interface, etc.
+        if(RuleInterfaceSystem.Instance.AddRule(item))
+        {
+            _inventory.Items.Remove(item);
+        }
     }
 }
