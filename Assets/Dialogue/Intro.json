@@ -13,7 +13,7 @@
         {
             "id": "worldstart",
             "lines": [
-                { "text": "* Once the rules are collected return\n  to this place and insert them into\n  the <i>interface</i>" }
+                { "text": "* Once the rules are collected return\n  to this place and insert them into\n  the <i>interface</i>", "secondsBefore": 1 }
             ]
         }
 	]

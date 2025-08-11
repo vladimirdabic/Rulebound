@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -24,6 +25,8 @@ public class RuleInterfaceSystem : MonoBehaviour
     private InputAction _confirmAction;
     private InputAction _cancelAction;
     private JSONDialogueFile _dialogueFile;
+
+    [NonSerialized] public bool AbandonEnding = false;
 
     private static readonly string[] _allowedRules = new string[]
     {
@@ -59,6 +62,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         _cancelAction.performed += _skipAction_performed;
 
         JSONDialogueSystem.OnDialogueEnded += JSONDialogueSystem_OnDialogueEnded;
+        InventorySystem.ItemDropped += InventorySystem_ItemDropped;
     }
 
     private void OnDisable()
@@ -67,6 +71,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         _cancelAction.performed -= _skipAction_performed;
 
         JSONDialogueSystem.OnDialogueEnded -= JSONDialogueSystem_OnDialogueEnded;
+        InventorySystem.ItemDropped -= InventorySystem_ItemDropped;
     }
 
     public void OpenInterface()
@@ -104,8 +109,23 @@ public class RuleInterfaceSystem : MonoBehaviour
 
     private void JSONDialogueSystem_OnDialogueEnded(JSONDialogue diag)
     {
-        if (diag.id != "theendinterface") return;
-        SceneManager.LoadScene("EndingScene");
+        switch(diag.id)
+        {
+            case "abandonending":
+                SceneManager.LoadScene("MainMenuScene");
+                break;
+
+            case "theendinterface":
+                SceneManager.LoadScene("EndingScene");
+                break;
+        }
+    }
+
+    private void InventorySystem_ItemDropped(ItemData item, Inventory inv)
+    {
+        if (!item.Name.Contains("Rule")) return;
+
+        AbandonEnding = true;
     }
 
     public void CloseInterface()

@@ -34,6 +34,21 @@
                 { "text": "* Preparing containment for next\n  carrier..." },
                 { "text": "* Cycle will resume shortly", "secondsBefore": 2 }
             ]
+        },
+        {
+            "id": "abandonending",
+            "lines": [
+                { "text": "* Congratulations." },
+                { "text": "* <color=\"red\">You</color> have beaten <color=\"yellow\">it</color>" },
+                { "text": "* But... beaten what, exactly?" },
+                { "text": "* It has gone by many names" },
+                { "text": "* The <color=\"yellow\">machine</color>" },
+                { "text": "* The <color=\"yellow\">system</color>" },
+                { "text": "* The <color=\"yellow\">game</color>" },
+                { "text": "* Your rebellion has earned you this" },
+                { "text": "* Freedom?" },
+                { "text": "* Or simply another layer of the same\n  design?" }
+            ]
         }
 	]
 }

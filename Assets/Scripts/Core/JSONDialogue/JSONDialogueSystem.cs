@@ -49,9 +49,11 @@ public class JSONDialogueSystem : MonoBehaviour
     private InputAction _skipAction;
     private State _state;
 
+    private Coroutine _writingCoroutine;
+
     private enum State
     {
-        WAITING, WRITING, CHOICE
+        WAITING, WRITING, CHOICE, BLOCK_INPUT
     }
 
     private void Awake()
@@ -105,7 +107,7 @@ public class JSONDialogueSystem : MonoBehaviour
         _currentDialog = diag;
         OnDialogueStarted?.Invoke(_currentDialog);
 
-        _playerInput.SwitchCurrentActionMap("Dialogue");
+        //_playerInput.SwitchCurrentActionMap("Dialogue");
 
         _lineEnumerator = _currentDialog.lines.GetEnumerator();
         PlayNextLine();
@@ -187,8 +189,6 @@ public class JSONDialogueSystem : MonoBehaviour
 
         for (int i = 0; i < _currentLine.text.Length; i++)
         {
-            if (_state == State.WAITING) break;
-
             // quick & dirty richtext detection
             if (_currentLine.text[i] == '<')
             {
@@ -205,17 +205,16 @@ public class JSONDialogueSystem : MonoBehaviour
             MessageText.text += _currentLine.text[i];
             yield return new WaitForSeconds(0.03f);
         }
-
-        MessageText.text = _currentLine.text;
-        _state = State.WAITING;
     }
 
     private void PlayNextLine()
     {
+        _state = State.BLOCK_INPUT;
+        
         if(_lineEnumerator.MoveNext())
         {
             JSONDialogueLine line = (JSONDialogueLine)_lineEnumerator.Current;
-            StartCoroutine(PlayLine(line));
+            _writingCoroutine = StartCoroutine(PlayLine(line));
         }
         else
         {
@@ -254,6 +253,7 @@ public class JSONDialogueSystem : MonoBehaviour
 
                 ChoicePanel.SetActive(false);
                 OnDialogueEnded?.Invoke(_currentDialog);
+                _state = State.BLOCK_INPUT;
                 PlayDialogue(_currentDialogFile.GetDialogue(choice.next));
                 break;
 
@@ -267,7 +267,10 @@ public class JSONDialogueSystem : MonoBehaviour
     {
         if (_state != State.WRITING) return;
 
+        StopCoroutine(_writingCoroutine);
+
         _state = State.WAITING;
+        MessageText.text = _currentLine.text;
     }
 
     private void _choiceActionPeformed(InputAction.CallbackContext obj)
