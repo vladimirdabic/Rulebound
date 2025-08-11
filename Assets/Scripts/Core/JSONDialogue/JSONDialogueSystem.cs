@@ -115,56 +115,13 @@ public class JSONDialogueSystem : MonoBehaviour
 
     private IEnumerator PlayLine(JSONDialogueLine line)
     {
+        _currentLine = line;
+
         if (line.secondsBefore > 0)
         {
             DialoguePanel.SetActive(false);
             yield return new WaitForSeconds(line.secondsBefore);
         }
-
-        _currentLine = line;
-        
-        // I don't really like how big this function is
-        // because of these special instructions...
-        if(line.condition != null)
-        {
-            DialogueFlag flag = GetFlag(GlobalFlags, line.condition) ?? GetFlag(_currentDialogFile.Flags, line.condition);
-
-            if(flag.Value)
-            {
-                if (line.next == null)
-                {
-                    EndDialogue();
-                    yield break;
-                }
-
-                JSONDialogue next = _currentDialogFile.GetDialogue(line.next);
-                OnDialogueEnded?.Invoke(_currentDialog);
-                PlayDialogue(next);
-                yield break;
-            }
-            else
-            {
-                PlayNextLine();
-                yield break;
-            }
-        }
-
-        if(line.set != null)
-        {
-            DialogueFlag flag = GetFlag(GlobalFlags, line.set) ?? GetFlag(_currentDialogFile.Flags, line.set);
-            flag.Value = true;
-            PlayNextLine();
-            yield break;
-        }
-
-        if (line.unset != null)
-        {
-            DialogueFlag flag = GetFlag(GlobalFlags, line.unset) ?? GetFlag(_currentDialogFile.Flags, line.unset);
-            flag.Value = false;
-            PlayNextLine();
-            yield break;
-        }
-
 
         DialoguePanel.SetActive(true);
         PortraitImage.sprite = line.Portrait != null ? line.Portrait : _currentDialog.MainPortrait;
@@ -205,6 +162,55 @@ public class JSONDialogueSystem : MonoBehaviour
             MessageText.text += _currentLine.text[i];
             yield return new WaitForSeconds(0.03f);
         }
+
+        MessageText.text = _currentLine.text;
+        _state = State.WAITING;
+    }
+
+    // A bit meh, but does the job
+    private bool HandleSpecialLines(JSONDialogueLine line)
+    {
+        if (line.condition != null)
+        {
+            DialogueFlag flag = GetFlag(GlobalFlags, line.condition) ?? GetFlag(_currentDialogFile.Flags, line.condition);
+
+            if (flag.Value)
+            {
+                if (line.next == null)
+                {
+                    EndDialogue();
+                    return true;
+                }
+
+                JSONDialogue next = _currentDialogFile.GetDialogue(line.next);
+                OnDialogueEnded?.Invoke(_currentDialog);
+                PlayDialogue(next);
+                return true;
+            }
+            else
+            {
+                PlayNextLine();
+                return true;
+            }
+        }
+
+        if (line.set != null)
+        {
+            DialogueFlag flag = GetFlag(GlobalFlags, line.set) ?? GetFlag(_currentDialogFile.Flags, line.set);
+            flag.Value = true;
+            PlayNextLine();
+            return true;
+        }
+
+        if (line.unset != null)
+        {
+            DialogueFlag flag = GetFlag(GlobalFlags, line.unset) ?? GetFlag(_currentDialogFile.Flags, line.unset);
+            flag.Value = false;
+            PlayNextLine();
+            return true;
+        }
+
+        return false;
     }
 
     private void PlayNextLine()
@@ -214,7 +220,8 @@ public class JSONDialogueSystem : MonoBehaviour
         if(_lineEnumerator.MoveNext())
         {
             JSONDialogueLine line = (JSONDialogueLine)_lineEnumerator.Current;
-            _writingCoroutine = StartCoroutine(PlayLine(line));
+            if(!HandleSpecialLines(line))
+                _writingCoroutine = StartCoroutine(PlayLine(line));
         }
         else
         {
@@ -266,6 +273,7 @@ public class JSONDialogueSystem : MonoBehaviour
     private void _skipAction_performed(InputAction.CallbackContext obj)
     {
         if (_state != State.WRITING) return;
+        if (_writingCoroutine == null) return;
 
         StopCoroutine(_writingCoroutine);
 
