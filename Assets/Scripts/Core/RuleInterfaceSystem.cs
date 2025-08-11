@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class RuleInterfaceSystem : MonoBehaviour
 {
@@ -56,12 +57,16 @@ public class RuleInterfaceSystem : MonoBehaviour
     {
         _confirmAction.performed += _advanceAction_performed;
         _cancelAction.performed += _skipAction_performed;
+
+        JSONDialogueSystem.OnDialogueEnded += JSONDialogueSystem_OnDialogueEnded;
     }
 
     private void OnDisable()
     {
         _confirmAction.performed -= _advanceAction_performed;
         _cancelAction.performed -= _skipAction_performed;
+
+        JSONDialogueSystem.OnDialogueEnded -= JSONDialogueSystem_OnDialogueEnded;
     }
 
     public void OpenInterface()
@@ -80,20 +85,27 @@ public class RuleInterfaceSystem : MonoBehaviour
 
     private void _advanceAction_performed(InputAction.CallbackContext obj)
     {
-        if(InsertedRules.Count < 3)
+        CloseInterface();
+
+        if (InsertedRules.Count < 3)
         {
-            CloseInterface();
             JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "missing");
         }
         else
         {
-            // TODO: Goto endgame screen
+            JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "theendinterface");
         }
     }
 
     private void _skipAction_performed(InputAction.CallbackContext obj)
     {
         CloseInterface();
+    }
+
+    private void JSONDialogueSystem_OnDialogueEnded(JSONDialogue diag)
+    {
+        if (diag.id != "theendinterface") return;
+        SceneManager.LoadScene("EndingScene");
     }
 
     public void CloseInterface()

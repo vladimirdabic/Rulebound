@@ -14,9 +14,25 @@
             ]
         },
         {
-            "id": "enddialogue",
+            "id": "theendinterface",
             "lines": [
-
+                { "text": "* All protocols satisfied" },
+                { "text": "* Carrier has returned Compassion" },
+                { "text": "* Carrier has returned Self" },
+                { "text": "* Carrier has returned Order" },
+                { "text": "* Data from this carrier has been\n  <i>logged</i>" },
+                { "text": "* <color=\"red\">Identifiers</color> will <i>not</i> persist" }
+            ]
+        },
+        {
+            "id": "carrierprocess",
+            "lines": [
+                { "text": "* ...Initiating separation sequence", "secondsBefore": 2 },
+                { "text": "* Extracting Compassion...", "secondsBefore": 2 },
+                { "text": "* Extracting Self..." },
+                { "text": "* Extracting Order..." },
+                { "text": "* Preparing containment for next\n  carrier..." },
+                { "text": "* Cycle will resume shortly", "secondsBefore": 2 }
             ]
         }
 	]

@@ -5,7 +5,8 @@ public class JSONInstantDialogue : MonoBehaviour
 {
     public TextAsset Dialogue;
     public string DialogueID = "main";
-    public bool StartMainScene;
+    public string NextScene;
+
 
     private JSONDialogueFile _dialogue;
 
@@ -27,7 +28,7 @@ public class JSONInstantDialogue : MonoBehaviour
 
     private void Instance_OnDialogueEnded(JSONDialogueFile diag)
     {
-        if (!StartMainScene) return;
-        SceneManager.LoadScene("MainScene");
+        if (NextScene == null || NextScene == string.Empty) return;
+        SceneManager.LoadScene(NextScene);
     }
 }

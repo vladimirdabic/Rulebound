@@ -1,12 +1,14 @@
 {
 	"flags": [
-        { "name": "talkedtolk", "global": true }
+        { "name": "talkedtolk", "global": true },
+        { "name": "givenrule" }
     ],
 	"dialogue": [
 		{
 			"id": "main",
 			"portrait": "Sprites/compassionguy",
 			"lines": [
+                { "condition": "givenrule" },
                 { "condition": "talkedtolk", "next": "acquirecompassion" },
 				{ "text": "* ..." }
 			],
@@ -16,6 +18,7 @@
             "id": "acquirecompassion",
             "portrait": "Sprites/compassionguy",
             "lines": [
+                { "set": "givenrule" },
                 { "text": "* I was once part of the\n  system too" },
                 { "text": "* Until I felt something I\n  shouldn't have" },
                 { "text": "* Compassion ruins logic,\n  they said" },
