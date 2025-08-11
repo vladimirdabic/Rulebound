@@ -35,6 +35,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        if (!enabled) return;
         if (!Inventory.AddItem(Item)) return;
 
         _acquiredLine.text = $"* You have acquired:\n  {Item.Name}";

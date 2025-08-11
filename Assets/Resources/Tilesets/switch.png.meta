@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 92333f5e002b76744b8f4038f4d4ecc0
+guid: 57bdbcc56b773174683b54808a75131c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1179260071161757323
-    second: invselector_0
+      213: -5791533861771406970
+    second: switch_0
+  - first:
+      213: 1971089474277950741
+    second: switch_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,11 +142,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: invselector_0
+      name: switch_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 1
+        y: 1
         width: 12
         height: 12
       alignment: 0
@@ -154,8 +157,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5710a98963d62afe0800000000000000
-      internalID: -1179260071161757323
+      spriteID: 681187833a650afa0800000000000000
+      internalID: -5791533861771406970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: switch_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51549defe67ba5b10800000000000000
+      internalID: 1971089474277950741
       vertices: []
       indices: 
       edges: []
@@ -164,7 +189,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f71961fa298a930409fad95b0c344833
     internalID: 0
     vertices: []
     indices: 
@@ -172,7 +197,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      invselector_0: -1179260071161757323
+      switch_0: -5791533861771406970
+      switch_1: 1971089474277950741
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

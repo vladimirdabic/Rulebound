@@ -101,8 +101,9 @@ public class InputController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IInteractable>(out var interactable))
-            _target = interactable;
+        IInteractable[] interactables = other.GetComponents<IInteractable>();
+        IInteractable found = interactables.FirstOrDefault(i => i is MonoBehaviour behaviour && behaviour.enabled);
+        _target = found;
     }
 
     private void OnTriggerExit2D(Collider2D other)

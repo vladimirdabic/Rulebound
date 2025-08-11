@@ -20,6 +20,15 @@
 				{ "text": "* It doesn't like disorder" },
 				{ "text": "* And it never forgets" }
 			]
+		},
+        {
+			"id": "hallscientist",
+            "portrait": "Sprites/scientist",
+			"lines": [
+				{ "text": "* The guy at the front desk\n  thinks it's Monday, when\n  it's actually Tuesday" },
+                { "text": "* Before you go in, you\n  could take a look at\n  these reports on the table" },
+                { "text": "* They'll give you an idea\n  of what we've done so far" }
+			]
 		}
 	]
 }

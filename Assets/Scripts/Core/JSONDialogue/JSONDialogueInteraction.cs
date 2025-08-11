@@ -11,6 +11,7 @@ public class JSONDialogueInteraction : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        if (!enabled) return;
         JSONDialogueSystem.Instance.PlayDialogue(DialogueFile, DialogueID);
     }
 
