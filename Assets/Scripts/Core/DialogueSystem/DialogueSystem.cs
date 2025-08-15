@@ -32,7 +32,7 @@ public class DialogueSystem : MonoBehaviour
     public List<Flag> GlobalFlags;
     
     private CSInterpreter _interpreter;
-    private List<Declaration.Choice> _choices;
+    private Declaration.Choice[] _choices;
     private int _choiceIdx;
     private string _currentMsg;
 
@@ -123,7 +123,7 @@ public class DialogueSystem : MonoBehaviour
         _writingCoroutine = StartCoroutine(PlayLine(message, secondsBefore));
     }
 
-    private void Interpreter_ChoicesStarted(string choiceText, List<Declaration.Choice> choices)
+    private void Interpreter_ChoicesStarted(string choiceText, Declaration.Choice[] choices)
     {
         _choices = choices;
         ChoiceText.text = choiceText ?? string.Empty;
@@ -193,7 +193,7 @@ public class DialogueSystem : MonoBehaviour
                 break;
 
             case "Down":
-                _choiceIdx = Mathf.Min(++_choiceIdx, _choices.Count - 1);
+                _choiceIdx = Mathf.Min(++_choiceIdx, _choices.Length - 1);
                 break;
         }
 

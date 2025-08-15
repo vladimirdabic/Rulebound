@@ -26,7 +26,9 @@ namespace VD.Rulebound.CS
 
     internal enum TokenType
     {
-        OPEN_BRACE, CLOSE_BRACE, RARROW,
+        OPEN_BRACE, CLOSE_BRACE, OPEN_SQUARE, CLOSE_SQUARE,
+        COMMA,
+        RARROW,
 
         NUM, STR, ID,
 

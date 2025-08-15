@@ -24,7 +24,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         ItemData item = ItemManager.Instance.GetItemByID(ItemID);
         if (!Inventory.AddItem(item, false)) return;
 
-        List<DialogueStmt> lines = _scriptInstance.GetDialogue("acquireditem").Statements;
+        DialogueStmt[] lines = _scriptInstance.GetDialogue("acquireditem").Statements;
         var l1 = (DialogueStmt.Line)lines[0];
         var l2 = (DialogueStmt.Line)lines[1];
 

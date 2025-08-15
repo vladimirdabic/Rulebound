@@ -184,16 +184,7 @@ public class InventorySystem : MonoBehaviour
                         break;
 
                     case Action.DROP:
-                        ItemData item = _inventory.Items[_selectedItemIdx];
-                        _inventory.Items.RemoveAt(_selectedItemIdx);
-                        ItemDropped?.Invoke(item, _inventory);
-
-                        // Still hacky... Could implement something like templated strings in Character Scripts
-                        DialogueStmt stmt = _cScript.GetDialogue("droppeditem").Statements[0];
-                        ((DialogueStmt.Line)stmt).Text = $"* Dropped {item.name}";
-
-                        InventoryPanel.SetActive(false);
-                        DialogueSystem.Instance.PlayDialogue("droppeditem", _cScript);
+                        DropItem();
                         break;
                 }
 
@@ -243,5 +234,27 @@ public class InventorySystem : MonoBehaviour
     private void RedrawItemList()
     {
         ItemListText.text = string.Join('\n', _inventory.Items.Select(i => i.name));
+    }
+
+    private void DropItem()
+    {
+        ItemData item = _inventory.Items[_selectedItemIdx];
+        DialogueStmt stmt = _cScript.GetDialogue("droppeditem").Statements[0];
+
+        if (item.undroppable)
+        {
+            ((DialogueStmt.Line)stmt).Text = $"* You tried dropping:\n  {item.name}\n  ...but you couldn't";
+        }
+        else
+        {
+            _inventory.Items.RemoveAt(_selectedItemIdx);
+            ItemDropped?.Invoke(item, _inventory);
+
+            // Still hacky... Could implement something like templated strings in Character Scripts
+            ((DialogueStmt.Line)stmt).Text = $"* Dropped {item.name}";
+        }
+
+        InventoryPanel.SetActive(false);
+        DialogueSystem.Instance.PlayDialogue("droppeditem", _cScript);
     }
 }

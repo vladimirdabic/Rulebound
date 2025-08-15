@@ -134,7 +134,7 @@ public class InputController : MonoBehaviour
         ItemData item = ItemManager.Instance.GetItemByID(itemId);
         if (!_inventory.AddItem(item, once)) return;
 
-        List<DialogueStmt> lines = _cScript.GetDialogue("acquireditem").Statements;
+        DialogueStmt[] lines = _cScript.GetDialogue("acquireditem").Statements;
         var l1 = (DialogueStmt.Line)lines[0];
         var l2 = (DialogueStmt.Line)lines[1];
 

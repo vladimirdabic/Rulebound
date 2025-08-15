@@ -34,11 +34,11 @@ namespace VD.Rulebound.CS
         public class Dialogue : Declaration
         {
             public string Name;
-            public List<DialogueStmt> Statements;
-            public List<Choice> Choices;
+            public DialogueStmt[] Statements;
+            public Choice[] Choices;
             public string ChoiceText;
 
-            public Dialogue(string name, List<DialogueStmt> statements, List<Choice> choices, string choiceText)
+            public Dialogue(string name, DialogueStmt[] statements, Choice[] choices, string choiceText)
             {
                 Name = name;
                 Statements = statements;

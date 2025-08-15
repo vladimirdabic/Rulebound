@@ -5,11 +5,11 @@ namespace VD.Rulebound.CS
 {
     internal class Parser
     {
-        private List<Token> _tokens;
+        private Token[] _tokens;
 
         private int _current;
         
-        public List<Declaration> Parse(List<Token> tokens)
+        public Declaration[] Parse(Token[] tokens)
         {
             _tokens = tokens;
             List<Declaration> decls = new List<Declaration>();
@@ -19,7 +19,7 @@ namespace VD.Rulebound.CS
                 decls.Add(ParseDecl());
             }
 
-            return decls;
+            return decls.ToArray();
         }
 
         private Declaration ParseDecl()
@@ -113,7 +113,7 @@ namespace VD.Rulebound.CS
 
             Consume(TokenType.CLOSE_BRACE, "Expected '}' to close dialogue body");
 
-            return new Declaration.Dialogue((string)id.Value, stmts, choices, choiceText);
+            return new Declaration.Dialogue((string)id.Value, stmts.ToArray(), choices?.ToArray(), choiceText);
         }
 
         private List<Declaration.Choice> ParseChoices()
@@ -154,11 +154,29 @@ namespace VD.Rulebound.CS
 
             if(Match(TokenType.ITEM))
             {
-                Token itemId = Consume(TokenType.STR, "Expected item id string after 'if item'");
+                List<string> itemIds = new List<string>();
+                
+                if(Match(TokenType.OPEN_SQUARE))
+                {
+                    do
+                    {
+                        Token itemId = Consume(TokenType.STR, "Expected item id string in 'if item' list");
+                        itemIds.Add((string)itemId.Value);
+                    }
+                    while (Match(TokenType.COMMA));
+
+                    Consume(TokenType.CLOSE_SQUARE, "Expected ']' to close item list");
+                }
+                else
+                {
+                    Token itemId = Consume(TokenType.STR, "Expected item id string after 'if item'");
+                    itemIds.Add((string)itemId.Value);
+                }
+
                 Consume(TokenType.RARROW, "Expected '->' for next dialogue id");
                 Token diagId = Consume(TokenType.ID, "Expected next dialogue id after '->'");
 
-                return new DialogueStmt.ItemCondition((string)itemId.Value, negated, (string)diagId.Value);
+                return new DialogueStmt.ItemCondition(itemIds.ToArray(), negated, (string)diagId.Value);
             }
 
             throw Error("Expected 'item' or 'flag' after if");

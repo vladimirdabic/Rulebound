@@ -31,7 +31,7 @@ namespace VD.Rulebound.CS
             {"choices", TokenType.CHOICES},
         };
 
-        public List<Token> Scan(string code, string ctxName = "unknown")
+        public Token[] Scan(string code, string ctxName = "unknown")
         {
             _tokens = new List<Token>();
             _current = 0;
@@ -47,7 +47,7 @@ namespace VD.Rulebound.CS
             }
 
             _tokens.Add(GetToken(TokenType.EOF));
-            return _tokens;
+            return _tokens.ToArray();
         }
 
         private Token ScanToken()
@@ -58,6 +58,9 @@ namespace VD.Rulebound.CS
             {
                 case '{': return GetToken(TokenType.OPEN_BRACE);
                 case '}': return GetToken(TokenType.CLOSE_BRACE);
+                case '[': return GetToken(TokenType.OPEN_SQUARE);
+                case ']': return GetToken(TokenType.CLOSE_SQUARE);
+                case ',': return GetToken(TokenType.COMMA);
                 case '-':
                     if (Match('>'))
                         return GetToken(TokenType.RARROW);

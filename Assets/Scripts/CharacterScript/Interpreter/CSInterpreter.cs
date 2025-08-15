@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VD.Rulebound.CS
 {
@@ -8,7 +9,7 @@ namespace VD.Rulebound.CS
     public delegate void DialogueLineHandler(string message, float secondsBefore);
     public delegate void ItemHandler(string itemId, bool once);
     public delegate bool ItemConditionDelegate(string itemId);
-    public delegate void ChoiceHandler(string choiceText, List<Declaration.Choice> choices);
+    public delegate void ChoiceHandler(string choiceText, Declaration.Choice[] choices);
 
     public class CSInterpreter : DialogueStmt.IVisitor
     {
@@ -82,7 +83,7 @@ namespace VD.Rulebound.CS
                 if (stmt.Accept(this)) return;
             }
 
-            if (_currentDialogue != null && _currentDialogue.Choices != null && _currentDialogue.Choices.Count > 0)
+            if (_currentDialogue != null && _currentDialogue.Choices != null && _currentDialogue.Choices.Length > 0)
                 ChoicesStarted?.Invoke(_currentDialogue.ChoiceText, _currentDialogue.Choices);
             else
                 EndDialogue();
@@ -177,7 +178,7 @@ namespace VD.Rulebound.CS
 
         public bool VisitItemCondition(DialogueStmt.ItemCondition itemCondition)
         {
-            bool f = HasItemFunc(itemCondition.ItemID);
+            bool f = itemCondition.ItemIDs.Any(id => HasItemFunc(id));
             bool check = itemCondition.Negated ? !f : f;
 
             if (check)

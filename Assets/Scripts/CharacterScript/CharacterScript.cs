@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace VD.Rulebound.CS
 {
@@ -31,15 +33,19 @@ namespace VD.Rulebound.CS
 
         public static CharacterScript FromText(string source, string ctx = "internal")
         {
-            Lexer lexer = new Lexer();
-            Parser parser = new Parser();
             CharacterScript cs = new CharacterScript();
+            Declaration[] decls = CSLoader.GetHashedTree(source);
 
-            List<Token> tokens = lexer.Scan(source, ctx);
-            List<Declaration> decls = parser.Parse(tokens);
+            if(decls == null)
+            {
+                Lexer lexer = new Lexer();
+                Parser parser = new Parser();
 
-            new CSLoader(cs, decls);
+                Token[] tokens = lexer.Scan(source, ctx);
+                decls = parser.Parse(tokens);
+            }
 
+            new CSLoader(cs, source, decls);
             return cs;
         }
     }
@@ -47,10 +53,14 @@ namespace VD.Rulebound.CS
     internal class CSLoader : Declaration.IVisitor
     {
         private readonly CharacterScript _script;
+        internal static readonly Dictionary<string, Declaration[]> _cachedASTs = new Dictionary<string, Declaration[]>();
 
-        internal CSLoader(CharacterScript cs, List<Declaration> decls)
+        internal CSLoader(CharacterScript cs, string source, Declaration[] decls)
         {
+            string hash = GetStableHash(source);
+
             _script = cs;
+            _cachedASTs[hash] = decls;
 
             foreach(Declaration decl in decls)
                 decl.Accept(this);
@@ -75,6 +85,25 @@ namespace VD.Rulebound.CS
 
             if (_script.GetLocalFlag(flag.Name) == null)
                 _script.Flags.Add(f);
+        }
+
+        internal static Declaration[] GetHashedTree(string source)
+        {
+            string hash = GetStableHash(source);
+
+            if(_cachedASTs.ContainsKey(hash)) 
+                return _cachedASTs[hash];
+            
+            return null;
+        }
+
+        private static string GetStableHash(string input)
+        {
+            using var md5 = MD5.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(bytes);
+
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
         }
     }
 }

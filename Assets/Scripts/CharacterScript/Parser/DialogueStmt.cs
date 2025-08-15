@@ -107,13 +107,13 @@ namespace VD.Rulebound.CS
 
         public class ItemCondition : DialogueStmt
         {
-            public string ItemID;
+            public string[] ItemIDs;
             public bool Negated;
             public string NextDialogue;
 
-            public ItemCondition(string itemID, bool negated, string nextDialogue)
+            public ItemCondition(string[] itemIDs, bool negated, string nextDialogue)
             {
-                ItemID = itemID;
+                ItemIDs = itemIDs;
                 Negated = negated;
                 NextDialogue = nextDialogue;
             }
