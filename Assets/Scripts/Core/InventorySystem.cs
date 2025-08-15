@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using VD.Rulebound.CS;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class InventorySystem : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _selectorOffset;
     [SerializeField] private float _selectorItemJump;
+    [SerializeField] private TextAsset _inventoryCScript;
 
     private InputAction _selectAction;
     private InputAction _cancelAction;
@@ -31,8 +34,7 @@ public class InventorySystem : MonoBehaviour
     private int _selectedItemIdx;
     private Action _selectedAction;
 
-    private static JSONDialogueFile _droppedItemDiag;
-    private static JSONDialogueLine _droppedItemDiagLine;
+    private CharacterScript _cScript;
 
     public static event Action<ItemData, Inventory> ItemUsed;
     public static event Action<ItemData, Inventory> ItemDropped;
@@ -84,26 +86,12 @@ public class InventorySystem : MonoBehaviour
         _moveActions[2] = map.FindAction("Left");
         _moveActions[3] = map.FindAction("Right");
 
-        _droppedItemDiagLine = new JSONDialogueLine();
-        _droppedItemDiag = new JSONDialogueFile()
-        {
-            dialogue = new JSONDialogue[]
-            {
-                new JSONDialogue()
-                {
-                    id = "main",
-                    lines = new JSONDialogueLine[]
-                    {
-                        _droppedItemDiagLine
-                    }
-                }
-            }
-        };
+        _cScript = CharacterScript.FromText(_inventoryCScript.text, _inventoryCScript.name);
     }
 
     private void Start()
     {
-        JSONDialogueSystem.OnDialogueFileEnded += DiagFinished;
+        CSInterpreter.DialogueEnded += DiagFinished;
     }
 
     private void OnEnable()
@@ -126,7 +114,7 @@ public class InventorySystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        JSONDialogueSystem.OnDialogueFileEnded -= DiagFinished;
+        CSInterpreter.DialogueEnded -= DiagFinished;
     }
 
     private void _moveAction_performed(InputAction.CallbackContext obj)
@@ -200,10 +188,12 @@ public class InventorySystem : MonoBehaviour
                         _inventory.Items.RemoveAt(_selectedItemIdx);
                         ItemDropped?.Invoke(item, _inventory);
 
-                        _droppedItemDiagLine.text = $"* Dropped {item.Name}";
-                        InventoryPanel.SetActive(false);
-                        JSONDialogueSystem.Instance.PlayDialogue(_droppedItemDiag);
+                        // Still hacky... Could implement something like templated strings in Character Scripts
+                        DialogueStmt stmt = _cScript.GetDialogue("droppeditem").Statements[0];
+                        ((DialogueStmt.Line)stmt).Text = $"* Dropped {item.name}";
 
+                        InventoryPanel.SetActive(false);
+                        DialogueSystem.Instance.PlayDialogue("droppeditem", _cScript);
                         break;
                 }
 
@@ -227,10 +217,16 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    private void DiagFinished(JSONDialogueFile diag)
+    private void DiagFinished(string dialogueId)
     {
-        if (diag != _droppedItemDiag) return;
+        if (dialogueId != "droppeditem") return;
 
+        StartCoroutine(DelayedReopenInv());
+    }
+
+    private IEnumerator DelayedReopenInv()
+    {
+        yield return null;
         OpenInventory(_inventory);
     }
 
@@ -246,6 +242,6 @@ public class InventorySystem : MonoBehaviour
 
     private void RedrawItemList()
     {
-        ItemListText.text = string.Join('\n', _inventory.Items.Select(i => i.Name));
+        ItemListText.text = string.Join('\n', _inventory.Items.Select(i => i.name));
     }
 }

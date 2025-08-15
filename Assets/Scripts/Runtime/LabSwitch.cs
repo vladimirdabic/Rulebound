@@ -11,7 +11,7 @@ public class LabSwitch : MonoBehaviour, IInteractable
         if (!enabled) return;
 
         GetComponent<SpriteRenderer>().sprite = SwitchEnabledSprite;
-        RuleObject.GetComponent<JSONDialogueInteraction>().enabled = false;
+        RuleObject.GetComponent<DialogueInteraction>().enabled = false;
         RuleObject.GetComponent<PickupItem>().enabled = true;
         Destroy(ObjectToDestroy);
 

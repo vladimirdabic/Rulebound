@@ -621,10 +621,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1811922926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b29d4a18e84db4d81eb758ae872744, type: 3}
+  m_Script: {fileID: 11500000, guid: ca80da7dfd9d1ff4c92fc4475751ffa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialogue: {fileID: 4900000, guid: 937d5062048ec0b4abd7afdfa11ecbc8, type: 3}
+  CScript: {fileID: 4900000, guid: 263d027f4c73aac47862385ba25e4fb3, type: 3}
   DialogueID: main
   NextScene: MainScene
 --- !u!1 &1814213177
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1814213177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60df816bb59f87e4c903850c963627c1, type: 3}
+  m_Script: {fileID: 11500000, guid: e84db453bed57874f9a17b2fc85920c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DialoguePanel: {fileID: 1589843958}

@@ -1,22 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using VD.Rulebound.CS;
 
 public class RuleInterfaceEntity : MonoBehaviour, IInteractable
 {
-    public TextAsset Dialogue;
+    public TextAsset CScript;
 
-    private JSONDialogueFile _dialogueFile;
+    private CharacterScript _scriptInstance;
 
     private void Awake()
     {
-        _dialogueFile = JsonUtility.FromJson<JSONDialogueFile>(Dialogue.text);    
+        _scriptInstance = CharacterScript.FromText(CScript.text, CScript.name);
     }
 
     public void OnInteract()
     {
+        if (!enabled) return;
+
         if(RuleInterfaceSystem.Instance.AbandonEnding)
         {
-            JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "abandonending");
+            DialogueSystem.Instance.PlayDialogue("abandonending", _scriptInstance);
             return;
         }
 

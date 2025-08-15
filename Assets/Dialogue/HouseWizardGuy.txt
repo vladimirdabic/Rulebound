@@ -1,0 +1,4 @@
+dialogue main {
+	portrait "Sprites/hatman"
+	"* Sometimes the <color=\"yellow\">machine</color>\n  whispers when it thinks\n  no one's listening..."
+}

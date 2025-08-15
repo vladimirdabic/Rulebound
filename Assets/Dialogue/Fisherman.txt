@@ -1,0 +1,9 @@
+dialogue main {
+	portrait "Sprites/fisherman"
+	"* Hm. Not fish today..."
+	"* Oh-hello again!"
+	"* Wait... you look...\n  different" wait 1.5
+	"* Is it still you?"
+	"* Why'd you come back here?\n  Was it your choice? Or..." wait 1.5
+	"* ...did <color=\"yellow\">It</color> bring you?" wait 1.5
+}

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using VD.Rulebound.CS;
 
 public class RuleInterfaceSystem : MonoBehaviour
 {
@@ -19,12 +20,12 @@ public class RuleInterfaceSystem : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
 
     [Header("Dialogue References")]
-    [SerializeField] private TextAsset Dialogue;
+    [SerializeField] private TextAsset CScript;
 
     public List<ItemData> InsertedRules;
     private InputAction _confirmAction;
     private InputAction _cancelAction;
-    private JSONDialogueFile _dialogueFile;
+    private CharacterScript _scriptInstance;
 
     [NonSerialized] public bool AbandonEnding = false;
 
@@ -37,8 +38,8 @@ public class RuleInterfaceSystem : MonoBehaviour
 
     public bool AddRule(ItemData rule)
     {
-        if (!_allowedRules.Contains(rule.Name)) return false;
-        if (InsertedRules.Any(item => item.Name == rule.name)) return false;
+        if (!_allowedRules.Contains(rule.name)) return false;
+        if (InsertedRules.Any(item => item.name == rule.name)) return false;
 
         InsertedRules.Add(rule);
         return true;
@@ -49,7 +50,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
-        _dialogueFile = JsonUtility.FromJson<JSONDialogueFile>(Dialogue.text);
+        _scriptInstance = CharacterScript.FromText(CScript.text, CScript.name);
 
         InputActionMap map = _playerInput.actions.FindActionMap("Interface");
         _confirmAction = map.FindAction("Confirm");
@@ -61,7 +62,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         _confirmAction.performed += _advanceAction_performed;
         _cancelAction.performed += _skipAction_performed;
 
-        JSONDialogueSystem.OnDialogueEnded += JSONDialogueSystem_OnDialogueEnded;
+        CSInterpreter.DialogueEnded += OnDialogueEnded;
         InventorySystem.ItemDropped += InventorySystem_ItemDropped;
     }
 
@@ -70,7 +71,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         _confirmAction.performed -= _advanceAction_performed;
         _cancelAction.performed -= _skipAction_performed;
 
-        JSONDialogueSystem.OnDialogueEnded -= JSONDialogueSystem_OnDialogueEnded;
+        CSInterpreter.DialogueEnded -= OnDialogueEnded;
         InventorySystem.ItemDropped -= InventorySystem_ItemDropped;
     }
 
@@ -82,7 +83,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         for(int i = 0; i < InsertedRules.Count; ++i)
         {
             ItemData item = InsertedRules[i];
-            RuleListText.text += $"({i + 1}) {item.Name}\n";
+            RuleListText.text += $"({i + 1}) {item.name}\n";
         }
 
         InterfacePanel.SetActive(true);
@@ -94,11 +95,11 @@ public class RuleInterfaceSystem : MonoBehaviour
 
         if (InsertedRules.Count < 3)
         {
-            JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "missing");
+            DialogueSystem.Instance.PlayDialogue("missing", _scriptInstance);
         }
         else
         {
-            JSONDialogueSystem.Instance.PlayDialogue(_dialogueFile, "theendinterface");
+            DialogueSystem.Instance.PlayDialogue("theendinterface", _scriptInstance);
         }
     }
 
@@ -107,9 +108,9 @@ public class RuleInterfaceSystem : MonoBehaviour
         CloseInterface();
     }
 
-    private void JSONDialogueSystem_OnDialogueEnded(JSONDialogue diag)
+    private void OnDialogueEnded(string dialogueId)
     {
-        switch(diag.id)
+        switch(dialogueId)
         {
             case "abandonending":
                 SceneManager.LoadScene("MainMenuScene");
@@ -123,7 +124,7 @@ public class RuleInterfaceSystem : MonoBehaviour
 
     private void InventorySystem_ItemDropped(ItemData item, Inventory inv)
     {
-        if (!item.Name.Contains("Rule")) return;
+        if (!item.name.Contains("Rule")) return;
 
         AbandonEnding = true;
     }

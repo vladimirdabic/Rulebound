@@ -1,0 +1,41 @@
+dialogue main {
+	portrait "Sprites/inspectingman"
+	"* Woah buddy, do\n  you mind?"
+	"* I'm trying to inspect\n  this fine stump"
+	"* Hey wait up, you look\n  out of place..." wait 1.5
+	"* You must be one\n  of them..."
+
+	choices {
+		"Where am I?" -> whereami
+		"One of what?" -> oneofwhat
+		"..."
+	}
+}
+
+dialogue whereami {
+	portrait "Sprites/inspectingman"
+	"* ... the Game World?"
+    "* Sorry-I always forget\n  that you don't know" wait 1
+
+	choices {
+		"Where am I?" -> whereami
+		"One of what?" -> oneofwhat
+		"..."
+	}
+}
+
+dialogue oneofwhat {
+	portrait "Sprites/inspectingman"
+
+	"* ... One of the ones\n  who don't belong"
+	"* Shadows of something\n  <color=\"yellow\">bigger</color>"
+	"* You come here with\n  empty hands, and you \n  always leave the same way"
+	"* I've seen it before"
+	"* I'll see it again"
+
+	choices {
+		"Where am I?" -> whereami
+		"One of what?" -> oneofwhat
+		"..."
+	}
+}

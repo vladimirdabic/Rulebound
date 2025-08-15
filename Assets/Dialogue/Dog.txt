@@ -1,0 +1,5 @@
+dialogue main {
+	portrait "Sprites/dog"
+	"* If you follow all the\n  rules... does that make\n  you good?"
+	"* ...or just obedient?"
+}

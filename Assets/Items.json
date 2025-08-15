@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "id": "compassionrule",
+            "name": "Rule Of Compassion",
+            "description": "It pulses faintly, like a heartbeat"
+        },
+        {
+            "id": "orderrule",
+            "name": "Rule Of Order",
+            "description": "It hums with precision"
+        },
+        {
+            "id": "selfrule",
+            "name": "Rule Of Self",
+            "description": "It reflects your input back at you"
+        },
+        {
+            "id": "testitem",
+            "name": "Test Item",
+            "description": "It's just a test item"
+        }
+    ]
+}

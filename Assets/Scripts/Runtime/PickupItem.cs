@@ -1,47 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
+using VD.Rulebound.CS;
 
 public class PickupItem : MonoBehaviour, IInteractable
 {
     public Inventory Inventory;
-    public ItemData Item;
+    public TextAsset CScript;
+    public string ItemID;
 
-    private static JSONDialogueFile _acquireDiag;
-    private static JSONDialogueLine _acquiredLine;
-    private static JSONDialogueLine _acquiredInfoLine;
+    private static CharacterScript _scriptInstance;
 
-    // Copied from Dialogue System (too lazy to make it reusable)
     private void Awake()
     {
-        if (_acquireDiag != null) return;
-        _acquiredLine = new JSONDialogueLine();
-        _acquiredInfoLine = new JSONDialogueLine();
+        if (_scriptInstance != null) return;
 
-        _acquireDiag = new JSONDialogueFile
-        {
-            dialogue = new JSONDialogue[]
-            {
-                new JSONDialogue()
-                {
-                    id = "main",
-                    lines = new JSONDialogueLine[]
-                    {
-                        _acquiredLine,
-                        _acquiredInfoLine
-                    }
-                }
-            }
-        };
+        _scriptInstance = CharacterScript.FromText(CScript.text, CScript.name);
     }
 
     public void OnInteract()
     {
         if (!enabled) return;
-        if (!Inventory.AddItem(Item)) return;
 
-        _acquiredLine.text = $"* You have acquired:\n  {Item.Name}";
-        _acquiredInfoLine.text = $"* {Item.Description}";
-        Destroy(gameObject, 0.1f);
+        ItemData item = ItemManager.Instance.GetItemByID(ItemID);
+        if (!Inventory.AddItem(item, false)) return;
 
-        JSONDialogueSystem.Instance.PlayDialogue(_acquireDiag);
+        List<DialogueStmt> lines = _scriptInstance.GetDialogue("acquireditem").Statements;
+        var l1 = (DialogueStmt.Line)lines[0];
+        var l2 = (DialogueStmt.Line)lines[1];
+
+        l1.Text = $"* You have acquired:\n  {item.name}";
+        l2.Text = $"* {item.description}";
+
+        DialogueSystem.Instance.PlayDialogue("acquireditem", _scriptInstance);
+        Destroy(gameObject);
     }
 }

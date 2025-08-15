@@ -1,0 +1,26 @@
+flag interacted
+
+dialogue main {
+	portrait "Sprites/scientist"
+
+	if flag interacted -> second
+	set interacted
+
+	"* Another Monday morning..."
+	"* They're bringing in\n  something new for study\n  today"
+	"* We've already documented\n  the Rule of Compassion"
+	"* The Rule of Self...\n  well, most of the team\n  couldn't bear it"
+	"* But this one-\n  The Rule of Order"
+	"* ...some of us think it might\n  be dangerous to even define"
+}
+
+dialogue second {
+	portrait "Sprites/scientist"
+
+	"* The Rule of Self...\n  it spoke to each of us"
+	"* It didn't shout, it didn't\n  threaten-it just... asked"
+	"* Simple questions, but ones\n  that made people doubt their\n  own face in the mirror"
+	"* Half the team requested\n  reassignment. The other\n  half..."
+	"* Well, they stopped answering\n  questions altogether"
+	"* That's why I'm worried about\n  Order. What if it asks\n  the wrong thing?"
+}

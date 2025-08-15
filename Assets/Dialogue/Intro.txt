@@ -1,0 +1,10 @@
+dialogue main {
+	"* ..." wait 2
+	"* Please collect the THREE RULES"
+	"* They are scattered"
+	"* You are needed"
+}
+
+dialogue worldstart {
+	"* Once the rules are collected return\n  to this place and insert them into\n  the <i>interface</i>" wait 1
+}

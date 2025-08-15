@@ -1,4 +1,5 @@
 using UnityEngine;
+using VD.Rulebound.CS;
 
 public class DestroyAfterDialogue : MonoBehaviour
 {
@@ -6,17 +7,17 @@ public class DestroyAfterDialogue : MonoBehaviour
 
     private void OnEnable()
     {
-        JSONDialogueSystem.OnDialogueEnded += JSONDialogueSystem_OnDialogueEnded;
+        CSInterpreter.DialogueEnded += OnDialogueEnded;
     }
 
     private void OnDisable()
     {
-        JSONDialogueSystem.OnDialogueEnded -= JSONDialogueSystem_OnDialogueEnded;
+        CSInterpreter.DialogueEnded -= OnDialogueEnded;
     }
 
-    private void JSONDialogueSystem_OnDialogueEnded(JSONDialogue diag)
+    private void OnDialogueEnded(string dialogueId)
     {
-        if (diag.id != DialogueID) return;
+        if (dialogueId != DialogueID) return;
 
         Destroy(gameObject);
     }

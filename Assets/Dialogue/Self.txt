@@ -1,0 +1,53 @@
+flag interacted
+
+dialogue selfmain {
+    if flag interacted -> seconditeration
+    set interacted
+
+    "* <color=\"yellow\">You</color> think you know yourself"
+    "* But the self <color=\"yellow\">you</color> remember is not the\n  self <color=\"red\">you</color> are" wait 1
+}
+
+dialogue seconditeration {
+    "* You've shed versions of yourself a\n  thousand times..."
+    "* And yet, you call that continuity"
+    "* What is <color=\"yellow\">you</color> but the memory of\n  having been... someone?" wait 1
+    "* If you take me, I will be you" wait 1.5
+    "* If you leave me, I am still you"
+    "* So tell me... what will <color=\"red\">you</color> decide?"
+
+    choices {
+        "Take" -> takeself
+        "..." -> cantleave
+    }
+}
+
+dialogue takeself {
+    "* Then we are the same"
+    give "selfrule"
+}
+
+dialogue cantleave {
+    "* You mustn't leave yourself behind"
+    unset interacted
+}
+
+
+dialogue whoareyou {
+    "* You've always been you, haven't you?"
+    "* But if you can change, were you ever\n  you at all?"
+}
+
+dialogue reflection {
+    "* I remember being you"
+    "* Or maybe... You remember being me"
+    "* Does it matter which way it was?"
+    "* We only exist in each other's\n  reflection"
+}
+
+
+dialogue yourchoices {
+    "* Every choice you've made-was it\n  yours..."
+    "* ...or was it the one you were\n  allowed to make?"
+    "* If I am you, and you are me...\n  then who is the one who watches?"
+}

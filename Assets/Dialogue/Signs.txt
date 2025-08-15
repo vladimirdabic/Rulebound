@@ -1,0 +1,19 @@
+dialogue river {
+	"* River"
+}
+
+dialogue nopass {
+	"* You shall not pass"
+}
+
+dialogue otherside {
+	"* This is the other side"
+}
+
+dialogue town {
+	"* Town"
+}
+
+dialogue church {
+	"* Church"
+}

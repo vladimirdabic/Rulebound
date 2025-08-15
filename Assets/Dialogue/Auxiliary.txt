@@ -1,0 +1,14 @@
+// InventorySystem part
+dialogue droppeditem {
+    "* Dropped {item}"
+}
+
+// Player part
+dialogue acquireditem {
+    "* You have acquired:\n  {item}"
+    "* {description}"
+}
+
+dialogue onlyatinterface {
+    "* Rule can only be used at the\n  interface"
+}

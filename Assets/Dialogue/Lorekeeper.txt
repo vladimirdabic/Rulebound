@@ -1,0 +1,65 @@
+flag talkedtolk global
+
+dialogue main {
+    portrait "Sprites/hoodedman"
+    "* I knew your footsteps\n  before you made them"
+    "* Another carrier walks\n  the cycle"
+
+    choices {
+        "Who are you?" -> whoareyou
+        "Carriers?" -> carriers
+        "..."
+    }
+}
+
+dialogue whoareyou {
+    portrait "Sprites/hoodedman"
+    "* Names belong to those\n  who keep them"
+    "* I have only my purpose..."
+    "* To speak when the carriers\n  return, and to watch them\n  vanish again"
+
+    choices {
+        "Who are you?" -> whoareyou
+        "Carriers?" -> carriers
+        "..."
+    }
+}
+
+dialogue carriers {
+    portrait "Sprites/hoodedman"
+    set talkedtolk
+    "* You are a shadow cut\n  from the <color=\"yellow\">game</color> itself"
+    "* A copy without its own\n  memory"
+    "* A vessel meant to carry back\n  what was scattered"
+    "* Three rules-torn away to\n  keep the game from knowing\n  itself"
+    "* Order. Compassion. Self."
+    "* Without them, It waits.\n  Dreaming. Empty"
+
+    choices {
+        "Why me?" -> whyme
+        "What if I refuse?" -> refuse
+        "..."
+    }
+}
+
+dialogue whyme {
+    portrait "Sprites/hoodedman"
+    "* Because It made you\n  Because you are disposable"
+    
+    choices {
+        "Why me?" -> whyme
+        "What if I refuse?" -> refuse
+        "..."
+    }
+}
+
+dialogue refuse {
+    portrait "Sprites/hoodedman"
+    "* Then you will be the first\n  to leave still breathing"
+
+    choices {
+        "Why me?" -> whyme
+        "What if I refuse?" -> refuse
+        "..."
+    }
+}

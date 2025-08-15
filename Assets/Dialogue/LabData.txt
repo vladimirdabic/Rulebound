@@ -1,0 +1,50 @@
+dialogue orderrulereport {
+    "* Rule of Order - \n  Preliminary Observations"
+    "* When isolated, the artifact\n  maintains complete stillness\n* No vibrations, no temperature\n  fluctuation, no detectable emissions"
+    "* Interaction begins only when a\n  pattern is broken in its presence"
+    "* Misaligned tiles, mismatched\n  footsteps, sentences left\n  unfinished-these seem to \"provoke\"\n  it"
+    "* Response manifests as correction.\n  The environment, or the subject,\n  is altered to restore symmetry"
+    "* Correction is instantaneous. It is\n  also irreversible"
+}
+
+dialogue rulelocked {
+    "* Seems to be locked..."
+}
+
+dialogue reportsmain {
+    "* Research reports of other rules"
+
+    choices "Read some reports?" {
+        "Compassion" -> compassionreport
+        "Self" -> selfreport
+        "..."
+    }
+}
+
+dialogue compassionreport {
+    "* Research Log - Rule of Compassion"
+    "* Initial exposure resulted in an\n  unusual emotional response among\n  staff"
+    "* Test subjects displayed an\n  overwhelming desire to protect\n  one another"
+    "* Several refused to leave the chamber\n  without the others"
+    "* Conclusion: Contact alters empathy\n  to extreme degrees"
+
+    choices "Read some reports?" {
+        "Compassion" -> compassionreport
+        "Self" -> selfreport
+        "..."
+    }
+}
+
+dialogue selfreport {
+    "* Research Log - Rule of Self"
+    "* Initial trials were halted after\n  multiple staff reported distressing\n  internal dialogues"
+    "* The artifact posed deeply personal\n  questions to each observer"
+    "* Several team members resigned,\n  citing inability to 'unhear'\n  the responses"
+    "* Conclusion: Prolonged contact risks\n  severe cognitive dissonance"
+
+    choices "Read some reports?" {
+        "Compassion" -> compassionreport
+        "Self" -> selfreport
+        "..."
+    }
+}

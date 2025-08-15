@@ -1,0 +1,34 @@
+dialogue missing {
+    "* Missing rules"
+}
+
+dialogue theendinterface {
+    "* All protocols satisfied"
+    "* Carrier has returned Compassion"
+    "* Carrier has returned Self"
+    "* Carrier has returned Order"
+    "* Data from this carrier has been\n  <i>logged</i>"
+    "* <color=\"red\">Identifiers</color> will <i>not</i> persist"
+}
+
+dialogue carrierprocess {
+    "* ...Initiating separation sequence" wait 2
+    "* Extracting Compassion..." wait 2
+    "* Extracting Self..."
+    "* Extracting Order..."
+    "* Preparing containment for next\n  carrier..."
+    "* Cycle will resume shortly" wait 2
+}
+
+dialogue abandonending {
+    "* Congratulations."
+    "* <color=\"red\">You</color> have beaten <color=\"yellow\">it</color>"
+    "* But... beaten what, exactly?"
+    "* It has gone by many names"
+    "* The <color=\"yellow\">machine</color>"
+    "* The <color=\"yellow\">system</color>"
+    "* The <color=\"yellow\">game</color>"
+    "* Your rebellion has earned you this"
+    "* Freedom?"
+    "* Or simply another layer of the same\n  design?"
+}

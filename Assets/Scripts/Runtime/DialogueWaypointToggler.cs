@@ -1,4 +1,5 @@
 using UnityEngine;
+using VD.Rulebound.CS;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(WaypointHandler))]
@@ -18,22 +19,22 @@ public class WaypointTogglerDialogue : MonoBehaviour
 
     private void OnEnable()
     {
-        JSONDialogueSystem.OnDialogueEnded += JSONDialogueSystem_OnDialogueEnded;   
+        CSInterpreter.DialogueEnded += OnDialogueEnded;   
     }
 
     private void OnDisable()
     {
-        JSONDialogueSystem.OnDialogueEnded -= JSONDialogueSystem_OnDialogueEnded;
+        CSInterpreter.DialogueEnded -= OnDialogueEnded;
     }
 
-    private void JSONDialogueSystem_OnDialogueEnded(JSONDialogue diag)
+    private void OnDialogueEnded(string dialogueId)
     {
-        if(diag.id == EnableDialogueID)
+        if(dialogueId == EnableDialogueID)
         {
             _collider.isTrigger = true;
             _wpHandler.enabled = true;
         }
-        else if(diag.id == DisableDialogueID)
+        else if(dialogueId == DisableDialogueID)
         {
             _collider.isTrigger = false;
             _wpHandler.enabled = false;

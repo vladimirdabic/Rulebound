@@ -1,0 +1,25 @@
+dialogue scientist1 {
+	portrait "Sprites/scientist"
+
+	"* Nothing has happend in hours"
+	"* That's how it works"
+	"* Stillness... until something\n  isn't where it should be"
+	"* Then it acts"
+}
+
+dialogue scientist2 {
+	portrait "Sprites/scientist"
+
+	"* Last week, I sneezed during\n  testing"
+	"* When I came back, every pen\n  on my desk was perfectly\n  parallel"
+	"* It doesn't like disorder"
+	"* And it never forgets"
+}
+
+dialogue hallscientist {
+	portrait "Sprites/scientist"
+
+	"* The guy at the front desk\n  thinks it's Monday, when\n  it's actually Tuesday"
+	"* Before you go in, you\n  could take a look at\n  these reports on the table"
+	"* They'll give you an idea\n  of what we've done so far"
+}

@@ -11,16 +11,24 @@ public class Inventory : MonoBehaviour
         Items = new List<ItemData>();
     }
 
-    public bool HasItem(string name)
+    public bool HasItem(string id)
     {
-        return Items.Any(i => i.Name == name);
+        return Items.Any(i => i.id == id);
     }
 
-    public bool AddItem(ItemData item)
+    public bool AddItem(ItemData item, bool alreadyHasCheck)
     {
-        if(HasItem(item.Name)) return false;
+        if(alreadyHasCheck && HasItem(item.id)) return false;
 
         Items.Add(item);
+        return true;
+    }
+
+    public bool RemoveItem(string id)
+    {
+        if (!HasItem(id)) return false;
+
+        Items.RemoveAll(i => i.id == id);
         return true;
     }
 }
