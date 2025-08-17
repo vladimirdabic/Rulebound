@@ -1,0 +1,11 @@
+dialogue corrupttrigger {
+	if item "orderrule" -> rivercallout
+	if item "compassionrule" -> rivercallout
+	if item "selfrule" -> rivercallout
+}
+
+dialogue rivercallout {
+	"* The river whispers..."
+	"* It hungers to twist what you hold"
+	"* It asks you: will you stain a rule?"
+}

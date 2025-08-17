@@ -52,7 +52,7 @@ public class InputController : MonoBehaviour
         _moveAction.canceled += _moveAction_canceled;
         _openInvAction.performed += _openInvAction_performed;
 
-        InventorySystem.ItemUsed += InventorySystem_ItemUsed;
+        InventoryController.ItemUsed += InventorySystem_ItemUsed;
 
         CSInterpreter.GiveItem += CSInterpreter_GiveItem;
         CSInterpreter.TakeItem += CSInterpreter_TakeItem;
@@ -65,7 +65,7 @@ public class InputController : MonoBehaviour
         _moveAction.canceled -= _moveAction_canceled;
         _openInvAction.performed -= _openInvAction_performed;
 
-        InventorySystem.ItemUsed -= InventorySystem_ItemUsed;
+        InventoryController.ItemUsed -= InventorySystem_ItemUsed;
 
         CSInterpreter.GiveItem -= CSInterpreter_GiveItem;
         CSInterpreter.TakeItem -= CSInterpreter_TakeItem;
@@ -85,7 +85,8 @@ public class InputController : MonoBehaviour
 
     private void _openInvAction_performed(InputAction.CallbackContext obj)
     {
-        InventorySystem.Instance.OpenInventory(_inventory);
+        //InventorySystem.Instance.OpenInventory(_inventory);
+        GetComponent<InventoryController>().OpenInventory(_inventory);
     }
 
     private void FixedUpdate()

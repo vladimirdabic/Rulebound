@@ -12,7 +12,6 @@ dialogue main {
 
 dialogue acquirecompassion {
     portrait "Sprites/compassionguy"
-    set givenrule
 
     "* I was once part of the\n  system too"
     "* Until I felt something I\n  shouldn't have"
@@ -21,6 +20,7 @@ dialogue acquirecompassion {
     "* Take the Rule\n* Be kind..."
     "* ...even to the <color=\"yellow\">machine</color>" wait 1
 
+    set givenrule
     give "compassionrule"
 
     "* The way ahead is open now" wait 1

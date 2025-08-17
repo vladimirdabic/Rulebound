@@ -63,7 +63,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         _cancelAction.performed += _skipAction_performed;
 
         CSInterpreter.DialogueEnded += OnDialogueEnded;
-        InventorySystem.ItemDropped += InventorySystem_ItemDropped;
+        InventoryController.ItemDropped += InventorySystem_ItemDropped;
     }
 
     private void OnDisable()
@@ -72,7 +72,7 @@ public class RuleInterfaceSystem : MonoBehaviour
         _cancelAction.performed -= _skipAction_performed;
 
         CSInterpreter.DialogueEnded -= OnDialogueEnded;
-        InventorySystem.ItemDropped -= InventorySystem_ItemDropped;
+        InventoryController.ItemDropped -= InventorySystem_ItemDropped;
     }
 
     public void OpenInterface()

@@ -178,7 +178,7 @@ namespace VD.Rulebound.CS
 
         public bool VisitItemCondition(DialogueStmt.ItemCondition itemCondition)
         {
-            bool f = itemCondition.ItemIDs.Any(id => HasItemFunc(id));
+            bool f = itemCondition.ItemIDs.All(id => HasItemFunc(id));
             bool check = itemCondition.Negated ? !f : f;
 
             if (check)

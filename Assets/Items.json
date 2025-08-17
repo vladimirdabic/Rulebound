@@ -3,20 +3,17 @@
         {
             "id": "compassionrule",
             "name": "Rule Of Compassion",
-            "description": "It pulses faintly, like a heartbeat",
-            "undroppable": true
+            "description": "It pulses faintly, like a heartbeat"
         },
         {
             "id": "orderrule",
             "name": "Rule Of Order",
-            "description": "It hums with precision",
-            "undroppable": true
+            "description": "It hums with precision"
         },
         {
             "id": "selfrule",
             "name": "Rule Of Self",
-            "description": "It reflects your input back at you",
-            "undroppable": true
+            "description": "It reflects your input back at you"
         },
         {
             "id": "testitem",
