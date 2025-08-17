@@ -84,7 +84,6 @@ public class MenuManager : MonoBehaviour
     private void confirmPerformed(InputAction.CallbackContext ctx)
     {
         if (_currentButton == null) return;
-        Debug.Log(_currentButton.ID);
         ButtonPressed?.Invoke(_currentButton, _currentMenu);
     }
 

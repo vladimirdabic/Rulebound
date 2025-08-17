@@ -124,7 +124,8 @@ public class InputController : MonoBehaviour
             return;
         }
 
-        if(RuleInterfaceSystem.Instance.AddRule(item))
+        RuleInterfaceEntity ruleInterface = FindFirstObjectByType<RuleInterfaceEntity>();
+        if(ruleInterface.AddRule(item))
         {
             _inventory.Items.Remove(item);
         }

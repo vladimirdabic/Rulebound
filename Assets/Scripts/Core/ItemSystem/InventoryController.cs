@@ -31,7 +31,16 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         _cScript = CharacterScript.FromText(_inventoryCScript.text, _inventoryCScript.name);
+    }
+
+    private void OnEnable()
+    {
         MenuManager.ButtonPressed += MenuButtonPressed;
+    }
+
+    private void OnDisable()
+    {
+        MenuManager.ButtonPressed -= MenuButtonPressed;
     }
 
     private void Start()
