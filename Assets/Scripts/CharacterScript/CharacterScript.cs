@@ -74,6 +74,7 @@ namespace VD.Rulebound.CS
         public void VisitFlag(Declaration.Flag flag)
         {
             Flag f = new Flag(flag.Name, false);
+            f.Saved = flag.IsSaved;
 
             if (flag.IsGlobal)
             {

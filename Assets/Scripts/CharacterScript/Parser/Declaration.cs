@@ -18,11 +18,13 @@ namespace VD.Rulebound.CS
         {
             public string Name;
             public bool IsGlobal;
+            public bool IsSaved;
 
-            public Flag(string name, bool isGlobal)
+            public Flag(string name, bool isGlobal, bool isSaved)
             {
                 Name = name;
                 IsGlobal = isGlobal;
+                IsSaved = isSaved;
             }
 
             public override void Accept(IVisitor visitor)

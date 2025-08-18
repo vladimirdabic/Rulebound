@@ -23,6 +23,7 @@ namespace VD.Rulebound.CS
             {"if", TokenType.IF},
             {"flag", TokenType.FLAG},
             {"global", TokenType.GLOBAL},
+            {"saved", TokenType.SAVED},
             {"set", TokenType.SET},
             {"unset", TokenType.UNSET},
             {"wait", TokenType.WAIT},

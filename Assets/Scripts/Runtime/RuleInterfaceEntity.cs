@@ -103,6 +103,15 @@ public class RuleInterfaceEntity : MonoBehaviour, IInteractable
                 break;
 
             case "theendinterface":
+                ItemData corruptedRule = InsertedRules.FirstOrDefault(rule => rule.GetUserData<bool>("corrupted"));
+
+                if(corruptedRule != null)
+                {
+                    Flag f = CSInterpreter.AddFlag($"c_{corruptedRule.id}");
+                    f.Value = true;
+                    f.Saved = true;
+                }
+
                 SceneManager.LoadScene("EndingScene");
                 break;
         }

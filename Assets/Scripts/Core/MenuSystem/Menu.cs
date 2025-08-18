@@ -19,6 +19,11 @@ public class Menu : MonoBehaviour
     {
         MenuManager.Instance.RegisterMenu(this);
     }
+
+    private void OnDisable()
+    {
+        MenuManager.Instance.UnregisterMenu(this);
+    }
 }
 
 [Serializable]

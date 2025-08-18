@@ -1,3 +1,7 @@
+flag c_selfrule saved
+flag c_orderrule saved
+flag c_compassionrule saved
+
 dialogue missing {
     "* Missing rules"
 }
@@ -11,13 +15,33 @@ dialogue theendinterface {
     "* <color=\"red\">Identifiers</color> will <i>not</i> persist"
 }
 
+
 dialogue carrierprocess {
+    if flag c_selfrule -> corruptedending
+    if flag c_compassionrule -> corruptedending
+    if flag c_orderrule -> corruptedending
+
     "* ...Initiating separation sequence" wait 2
     "* Extracting Compassion..." wait 2
     "* Extracting Self..."
     "* Extracting Order..."
     "* Preparing containment for next\n  carrier..."
     "* Cycle will resume shortly" wait 2
+}
+
+dialogue corruptedending {
+    "* ...Initiating separation sequence" wait 2
+    "* Extracting Compassion..."
+    "* Extracting Self..."
+    "* Extracting Or-"
+    "* <color=red><b>ERROR:</b></color> Integrity mismatch detected" wait 1
+    "* <color=red>Containment breach...</color>" wait 1
+    "* Rule <rotate=20><size=120%>??????</size></rotate> cannot be resolved" wait 1
+    "* Carrier integrity <alpha=#88><voffset=0.1em>compromised" wait 2
+    "* <size=120%><color=red>SYSTEM HALT" wait 1
+    "* <size=90%><cspace=10>UNDEFINED   BEHAVIOR" wait 1
+    "* The <rotate=15>cycle</rotate>..." wait 1
+    "* The cycle will <alpha=#55>not-" wait 1
 }
 
 dialogue abandonending {

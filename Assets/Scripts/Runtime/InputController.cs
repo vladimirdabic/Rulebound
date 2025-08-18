@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using VD.Rulebound.CS;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Inventory))]
 public class InputController : MonoBehaviour
@@ -33,7 +32,7 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _playerInput = _rb.GetComponent<PlayerInput>();
+        _playerInput = InputRouter.Instance.Input;
         _animator = _rb.GetComponent<Animator>();
         _inventory = GetComponent<Inventory>();
 

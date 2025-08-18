@@ -12,3 +12,7 @@ dialogue acquireditem {
 dialogue onlyatinterface {
     "* Rule can only be used at the\n  interface"
 }
+
+dialogue rewriterused {
+    "* Cannot rewrite another rule"
+}

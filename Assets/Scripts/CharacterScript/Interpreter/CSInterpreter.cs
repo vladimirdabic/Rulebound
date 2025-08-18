@@ -109,6 +109,19 @@ namespace VD.Rulebound.CS
             return GlobalFlags.Find(f => f.Name == name);
         }
 
+        public static Flag AddFlag(string name)
+        {
+            Flag f = GetFlag(name);
+            
+            if (f == null)
+            {
+                f = new Flag(name, false);
+                GlobalFlags.Add(f);
+            }
+
+            return f;
+        }
+
         private void EndDialogue()
         {
             DialogueEnded?.Invoke(_currentDialogue.Name);
@@ -218,10 +231,13 @@ namespace VD.Rulebound.CS
         public string Name;
         public bool Value;
 
+        [NonSerialized] public bool Saved;
+
         public Flag(string name, bool value)
         {
             Name = name;
             Value = value;
+            Saved = false;
         }
     }
 }

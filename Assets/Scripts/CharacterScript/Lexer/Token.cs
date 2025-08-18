@@ -34,7 +34,7 @@ namespace VD.Rulebound.CS
 
         DIALOGUE,
         GIVE, TAKE, ITEM,
-        IF, FLAG, GLOBAL, SET, UNSET, NOT,
+        IF, FLAG, GLOBAL, SAVED, SET, UNSET, NOT,
         WAIT, PORTRAIT, CHOICES,
 
         EOF,

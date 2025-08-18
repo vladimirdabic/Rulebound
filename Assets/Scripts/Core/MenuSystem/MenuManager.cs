@@ -11,19 +11,19 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
-    [Header("Input References")]
-    [SerializeField] private PlayerInput _playerInput;
-    
+    //[Header("Input References")]
+    //[SerializeField] private PlayerInput _playerInput;
+
     [Header("UI References")]
     public Image Selector;
     [SerializeField] private float _selectorOffset;
-    //[SerializeField] private float _selectorItemJump;
 
     public static event Action<Menu> MenuOpened;
     public static event Action<Menu> MenuClosed;
     public static event ButtonPressedDelegate ButtonPressed;
 
     private Dictionary<string, Menu> _menus;
+    private PlayerInput _playerInput;
     private InputAction _confirmAction;
     private InputAction _cancelAction;
     private readonly InputAction[] _moveActions = new InputAction[4];
@@ -53,10 +53,11 @@ public class MenuManager : MonoBehaviour
         Instance = this;
         _menus = new Dictionary<string, Menu>();
         _selectionStack = new Stack<SelectionContext>();
+        _playerInput = InputRouter.Instance.Input;
 
         InputActionMap map = _playerInput.actions.FindActionMap("Menu");
-       _confirmAction = map.FindAction("Confirm");
-       _cancelAction = map.FindAction("Cancel");
+        _confirmAction = map.FindAction("Confirm");
+        _cancelAction = map.FindAction("Cancel");
         _moveActions[0] = map.FindAction("Up");
         _moveActions[1] = map.FindAction("Down");
         _moveActions[2] = map.FindAction("Left");

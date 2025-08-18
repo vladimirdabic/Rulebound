@@ -27,9 +27,12 @@ namespace VD.Rulebound.CS
             if(Match(TokenType.FLAG))
             {
                 Token name = Consume(TokenType.ID, "Expected flag name after 'flag'");
-                bool global = Match(TokenType.GLOBAL);
 
-                return new Declaration.Flag((string)name.Value, global);
+                bool global = Match(TokenType.GLOBAL);
+                bool saved = !global && Match(TokenType.SAVED);
+                if (saved) global = true;
+
+                return new Declaration.Flag((string)name.Value, global, saved);
             }
 
             if(Match(TokenType.DIALOGUE))

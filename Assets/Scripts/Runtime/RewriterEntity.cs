@@ -9,9 +9,17 @@ public class RewriterEntity : MonoBehaviour, IInteractable
     public TMP_Text InsertedModuleText;
 
     [Header("Other")]
+    public TextAsset CScript;
     public Inventory PlayerInventory;
 
     [NonSerialized] public ItemData InsertedItem;
+    private CharacterScript _scriptInstance;
+    private bool _used = false;
+
+    private void Awake()
+    {
+        _scriptInstance = CharacterScript.FromText(CScript.text, CScript.name);
+    }
 
     private void OnEnable()
     {
@@ -62,8 +70,16 @@ public class RewriterEntity : MonoBehaviour, IInteractable
                 if (InsertedItem == null) return;
                 if (InsertedItem.GetUserData<bool>("corrupted")) return;
 
+                if (_used)
+                {
+                    MenuManager.Instance.CloseMenu();
+                    DialogueSystem.Instance.PlayDialogue("rewriterused", _scriptInstance);
+                    return;
+                }
+
                 InsertedItem.SetUserData("corrupted", true);
                 InsertedItem.name = $"<i>{InsertedItem.name}</i>";
+                _used = true;
                 break;
 
             case "eject":
