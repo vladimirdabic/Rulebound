@@ -11,7 +11,7 @@ public class SwitchSceneOnConfirm : MonoBehaviour
 
     private void Awake()
     {
-        InputActionMap map = Input.actions.FindActionMap("Interface");
+        InputActionMap map = Input.actions.FindActionMap("Menu");
         _confirmAction = map.FindAction("Confirm");
     }
 
@@ -32,6 +32,6 @@ public class SwitchSceneOnConfirm : MonoBehaviour
 
     private void Start()
     {
-        Input.SwitchCurrentActionMap("Interface");
+        Input.SwitchCurrentActionMap("Menu");
     }
 }

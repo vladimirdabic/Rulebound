@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -39,6 +40,26 @@ public class ItemData
     public string name;
     public string description;
     public bool undroppable;
+
+    [NonSerialized] private Dictionary<string, object> _userData;
+
+    public T GetUserData<T>(string key)
+    {
+        Init();
+        object obj = _userData.GetValueOrDefault(key);
+        return obj == null ? default : (T)obj;
+    }
+
+    public void SetUserData<T>(string key, T data)
+    {
+        Init();
+        _userData[key] = data;
+    }
+
+    private void Init()
+    {
+        _userData ??= new Dictionary<string, object>();
+    }
 }
 
 [Serializable]

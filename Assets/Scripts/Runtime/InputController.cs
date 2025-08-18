@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +15,8 @@ public class InputController : MonoBehaviour
     [Header("CS References")]
     public TextAsset CScript;
 
+    public IInteractable Target { get; private set; }
+
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _openInvAction;
@@ -29,7 +29,6 @@ public class InputController : MonoBehaviour
     private CharacterScript _cScript;
 
     private Vector3 _inputVector;
-    private IInteractable _target;
 
     private void Awake()
     {
@@ -80,7 +79,7 @@ public class InputController : MonoBehaviour
 
     private void _interactAction_performed(InputAction.CallbackContext obj)
     {
-        _target?.OnInteract();
+        Target?.OnInteract();
     }
 
     private void _openInvAction_performed(InputAction.CallbackContext obj)
@@ -105,29 +104,32 @@ public class InputController : MonoBehaviour
     {
         IInteractable[] interactables = other.GetComponents<IInteractable>();
         IInteractable found = interactables.FirstOrDefault(i => i is MonoBehaviour behaviour && behaviour.enabled);
-        _target = found;
+        Target = found;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent<IInteractable>(out var _))
-            _target = null;
+            Target = null;
     }
 
     private void InventorySystem_ItemUsed(ItemData item, Inventory inv)
     {
         if (inv != _inventory) return;
-        if (_target == null || _target.GetType() != typeof(RuleInterfaceEntity))
+
+        if (Target == null && item.id.Contains("rule"))
         {
-            if (item.id.Contains("rule"))
-                DialogueSystem.Instance.PlayDialogue("onlyatinterface", _cScript);
+            DialogueSystem.Instance.PlayDialogue("onlyatinterface", _cScript);
             return;
         }
 
-        RuleInterfaceEntity ruleInterface = FindFirstObjectByType<RuleInterfaceEntity>();
-        if(ruleInterface.AddRule(item))
+        if(Target is RuleInterfaceEntity ruleInterface)
         {
-            _inventory.Items.Remove(item);
+            if (ruleInterface.AddRule(item)) _inventory.Items.Remove(item);
+        }
+        else if(Target is RewriterEntity rewriter)
+        {
+            if (rewriter.InsertItem(item)) _inventory.Items.Remove(item);
         }
     }
 
