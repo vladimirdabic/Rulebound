@@ -3,22 +3,22 @@ using TMPro;
 using UnityEngine;
 using VD.Rulebound.CS;
 
+[RequireComponent(typeof(Character))]
 public class RewriterEntity : MonoBehaviour, IInteractable
 {
     [Header("UI References")]
     public TMP_Text InsertedModuleText;
 
     [Header("Other")]
-    public TextAsset CScript;
     public Inventory PlayerInventory;
 
     [NonSerialized] public ItemData InsertedItem;
-    private CharacterScript _scriptInstance;
+    private Character _character;
     private bool _used = false;
 
     private void Awake()
     {
-        _scriptInstance = CharacterScript.FromText(CScript.text, CScript.name);
+        _character = GetComponent<Character>();
     }
 
     private void OnEnable()
@@ -73,7 +73,7 @@ public class RewriterEntity : MonoBehaviour, IInteractable
                 if (_used)
                 {
                     MenuManager.Instance.CloseMenu();
-                    DialogueSystem.Instance.PlayDialogue("rewriterused", _scriptInstance);
+                    DialogueSystem.Instance.PlayDialogue("rewriterused", _character.ScriptInstance);
                     return;
                 }
 

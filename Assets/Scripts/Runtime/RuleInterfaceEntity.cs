@@ -6,16 +6,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VD.Rulebound.CS;
 
+[RequireComponent(typeof(Character))]
 public class RuleInterfaceEntity : MonoBehaviour, IInteractable
 {
     [Header("UI References")]
     public TMP_Text RuleListText;
 
-    [Header("Dialogue References")]
-    [SerializeField] private TextAsset CScript;
-
     public List<ItemData> InsertedRules;
-    private CharacterScript _scriptInstance;
+    private Character _character;
 
     [NonSerialized] public bool AbandonEnding = false;
 
@@ -28,7 +26,7 @@ public class RuleInterfaceEntity : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        _scriptInstance = CharacterScript.FromText(CScript.text, CScript.name);
+        _character = GetComponent<Character>();
     }
 
     private void OnEnable()
@@ -51,7 +49,7 @@ public class RuleInterfaceEntity : MonoBehaviour, IInteractable
 
         if (AbandonEnding)
         {
-            DialogueSystem.Instance.PlayDialogue("abandonending", _scriptInstance);
+            DialogueSystem.Instance.PlayDialogue("abandonending", _character.ScriptInstance);
             return;
         }
 
@@ -86,11 +84,11 @@ public class RuleInterfaceEntity : MonoBehaviour, IInteractable
 
         if (InsertedRules.Count < 3)
         {
-            DialogueSystem.Instance.PlayDialogue("missing", _scriptInstance);
+            DialogueSystem.Instance.PlayDialogue("missing", _character.ScriptInstance);
         }
         else
         {
-            DialogueSystem.Instance.PlayDialogue("theendinterface", _scriptInstance);
+            DialogueSystem.Instance.PlayDialogue("theendinterface", _character.ScriptInstance);
         }
     }
 

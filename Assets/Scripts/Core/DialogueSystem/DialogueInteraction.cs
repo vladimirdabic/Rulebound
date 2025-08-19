@@ -4,26 +4,22 @@ using UnityEngine;
 using VD.Rulebound.CS;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Character))]
 public class DialogueInteraction : MonoBehaviour, IInteractable
 {
-    [Header("Dialogue")]
-    public TextAsset CScript;
     public string DialogueID = "main";
 
-    [Header("Flags")]
-    public List<Flag> Flags;
-
-    [NonSerialized] public CharacterScript ScriptInstance;
+    private Character _character;
+    
+    private void Awake()
+    {
+        _character = GetComponent<Character>();
+    }
 
     public void OnInteract()
     {
         if (!enabled) return;
-        DialogueSystem.Instance.PlayDialogue(DialogueID, ScriptInstance);
+        DialogueSystem.Instance.PlayDialogue(DialogueID, _character.ScriptInstance);
     }
 
-    private void Awake()
-    {
-        ScriptInstance = CharacterScript.FromText(CScript.text, DialogueID);
-        Flags = ScriptInstance.Flags;
-    }
 }

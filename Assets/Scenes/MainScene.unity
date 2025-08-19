@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 38139401}
   - component: {fileID: 38139400}
   - component: {fileID: 38139399}
+  - component: {fileID: 38139403}
   - component: {fileID: 38139402}
   m_Layer: 0
   m_Name: CompassionGuyEntity
@@ -312,8 +313,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 728c36878dc04c9409e6033ab3c39f5f, type: 3}
   DialogueID: main
+--- !u!114 &38139403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38139397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 728c36878dc04c9409e6033ab3c39f5f, type: 3}
   Flags: []
 --- !u!1001 &58133446
 PrefabInstance:
@@ -1292,6 +1305,7 @@ GameObject:
   - component: {fileID: 227182432}
   - component: {fileID: 227182431}
   - component: {fileID: 227182430}
+  - component: {fileID: 227182434}
   - component: {fileID: 227182433}
   m_Layer: 0
   m_Name: Scientist (2)
@@ -1474,8 +1488,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 3f60f8e56c332844ea982e1f9828efc4, type: 3}
   DialogueID: hallscientist
+--- !u!114 &227182434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227182427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 3f60f8e56c332844ea982e1f9828efc4, type: 3}
   Flags: []
 --- !u!1001 &264696895
 PrefabInstance:
@@ -1587,6 +1613,7 @@ GameObject:
   - component: {fileID: 277625188}
   - component: {fileID: 277625189}
   - component: {fileID: 277625190}
+  - component: {fileID: 277625192}
   - component: {fileID: 277625191}
   m_Layer: 0
   m_Name: RewriterEntity
@@ -1770,8 +1797,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InsertedModuleText: {fileID: 2106511826}
-  CScript: {fileID: 4900000, guid: b18724771130fab40814ccefdce33989, type: 3}
   PlayerInventory: {fileID: 2035021923}
+--- !u!114 &277625192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277625186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: b18724771130fab40814ccefdce33989, type: 3}
+  Flags: []
 --- !u!1 &283753729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2474,7 @@ GameObject:
   - component: {fileID: 390273475}
   - component: {fileID: 390273478}
   - component: {fileID: 390273477}
+  - component: {fileID: 390273481}
   - component: {fileID: 390273480}
   m_Layer: 0
   m_Name: SignEntity
@@ -2616,8 +2657,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   DialogueID: nopass
+--- !u!114 &390273481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390273473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   Flags: []
 --- !u!1 &403036170
 GameObject:
@@ -3976,8 +4029,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 2b6f9aa19bffe334a894ecc504318307, type: 3}
   DialogueID: orderrulereport
+--- !u!114 &566141869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566141862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 2b6f9aa19bffe334a894ecc504318307, type: 3}
   Flags: []
 --- !u!1001 &569359822
 PrefabInstance:
@@ -4179,8 +4244,8 @@ GameObject:
   - component: {fileID: 574013047}
   - component: {fileID: 574013049}
   - component: {fileID: 574013048}
+  - component: {fileID: 574013053}
   - component: {fileID: 574013051}
-  - component: {fileID: 574013050}
   - component: {fileID: 574013052}
   m_Layer: 0
   m_Name: SelfRuleEntity
@@ -4351,19 +4416,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9536629, y: 1.0910225}
   m_EdgeRadius: 0
---- !u!114 &574013050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574013045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6121b755e018dc45a7d789042457352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueID: takeself
 --- !u!114 &574013051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4376,9 +4428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: aa23e6c7cc6d82441949f02a46f1a645, type: 3}
   DialogueID: selfmain
-  Flags: []
 --- !u!95 &574013052
 Animator:
   serializedVersion: 7
@@ -4401,6 +4451,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &574013053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574013045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: aa23e6c7cc6d82441949f02a46f1a645, type: 3}
+  Flags: []
 --- !u!1 &575481942
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,6 +4628,7 @@ GameObject:
   - component: {fileID: 580737188}
   - component: {fileID: 580737187}
   - component: {fileID: 580737190}
+  - component: {fileID: 580737192}
   - component: {fileID: 580737191}
   m_Layer: 0
   m_Name: Scientist
@@ -4746,8 +4811,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 3f60f8e56c332844ea982e1f9828efc4, type: 3}
   DialogueID: scientist1
+--- !u!114 &580737192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580737185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 3f60f8e56c332844ea982e1f9828efc4, type: 3}
   Flags: []
 --- !u!1 &588998682
 GameObject:
@@ -4942,6 +5019,7 @@ GameObject:
   - component: {fileID: 622716739}
   - component: {fileID: 622716738}
   - component: {fileID: 622716737}
+  - component: {fileID: 622716741}
   - component: {fileID: 622716740}
   m_Layer: 0
   m_Name: SignEntity
@@ -5124,8 +5202,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   DialogueID: otherside
+--- !u!114 &622716741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622716734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   Flags: []
 --- !u!1001 &649827232
 PrefabInstance:
@@ -5229,6 +5319,7 @@ GameObject:
   - component: {fileID: 649950764}
   - component: {fileID: 649950763}
   - component: {fileID: 649950766}
+  - component: {fileID: 649950768}
   - component: {fileID: 649950767}
   m_Layer: 0
   m_Name: GuardEntity
@@ -5411,8 +5502,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 38272736ee50f2b49a9ed0a3dc6f29c1, type: 3}
   DialogueID: main
+--- !u!114 &649950768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649950761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 38272736ee50f2b49a9ed0a3dc6f29c1, type: 3}
   Flags: []
 --- !u!1001 &659703387
 PrefabInstance:
@@ -5680,6 +5783,7 @@ GameObject:
   - component: {fileID: 692082351}
   - component: {fileID: 692082350}
   - component: {fileID: 692082349}
+  - component: {fileID: 692082353}
   - component: {fileID: 692082352}
   m_Layer: 0
   m_Name: ChurchSignEntity
@@ -5862,8 +5966,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   DialogueID: church
+--- !u!114 &692082353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692082346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   Flags: []
 --- !u!1 &695226102
 GameObject:
@@ -6247,6 +6363,7 @@ GameObject:
   - component: {fileID: 763523284}
   - component: {fileID: 763523283}
   - component: {fileID: 763523282}
+  - component: {fileID: 763523286}
   - component: {fileID: 763523285}
   m_Layer: 0
   m_Name: InspectingManEntity
@@ -6429,8 +6546,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 6be789ce25d7dc54a8fbb85bef2fec9b, type: 3}
   DialogueID: main
+--- !u!114 &763523286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763523279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 6be789ce25d7dc54a8fbb85bef2fec9b, type: 3}
   Flags: []
 --- !u!1001 &787064478
 PrefabInstance:
@@ -6593,6 +6722,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8474012594248505218, guid: ba43237ff1d1c40469f4b2056e8d134b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1826095690}
+    - targetCorrespondingSourceObject: {fileID: 8474012594248505218, guid: ba43237ff1d1c40469f4b2056e8d134b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1826095694}
     - targetCorrespondingSourceObject: {fileID: 8474012594248505218, guid: ba43237ff1d1c40469f4b2056e8d134b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1826095693}
@@ -8393,6 +8525,7 @@ GameObject:
   - component: {fileID: 994110816}
   - component: {fileID: 994110815}
   - component: {fileID: 994110814}
+  - component: {fileID: 994110818}
   - component: {fileID: 994110817}
   m_Layer: 0
   m_Name: DogEntity
@@ -8575,8 +8708,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 83315440301d7fe4da924755825f0410, type: 3}
   DialogueID: main
+--- !u!114 &994110818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994110811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 83315440301d7fe4da924755825f0410, type: 3}
   Flags: []
 --- !u!1001 &998378209
 PrefabInstance:
@@ -81484,6 +81629,7 @@ GameObject:
   - component: {fileID: 1085263765}
   - component: {fileID: 1085263764}
   - component: {fileID: 1085263766}
+  - component: {fileID: 1085263768}
   - component: {fileID: 1085263767}
   m_Layer: 0
   m_Name: OldGuyEntity
@@ -81666,8 +81812,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 4c1b694bbd8aaec4087d3791f7236004, type: 3}
   DialogueID: main
+--- !u!114 &1085263768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 4c1b694bbd8aaec4087d3791f7236004, type: 3}
   Flags: []
 --- !u!1 &1124237740
 GameObject:
@@ -81681,6 +81839,7 @@ GameObject:
   - component: {fileID: 1124237744}
   - component: {fileID: 1124237743}
   - component: {fileID: 1124237742}
+  - component: {fileID: 1124237746}
   - component: {fileID: 1124237745}
   m_Layer: 0
   m_Name: RuleInterfaceEntity
@@ -81864,8 +82023,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RuleListText: {fileID: 156444740}
-  CScript: {fileID: 4900000, guid: 112cff40df936b44394659974c9c2b65, type: 3}
   InsertedRules: []
+--- !u!114 &1124237746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124237740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 112cff40df936b44394659974c9c2b65, type: 3}
+  Flags: []
 --- !u!1001 &1145001503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82533,8 +82705,9 @@ GameObject:
   - component: {fileID: 1270036155}
   - component: {fileID: 1270036157}
   - component: {fileID: 1270036158}
-  - component: {fileID: 1270036159}
+  - component: {fileID: 1270036161}
   - component: {fileID: 1270036160}
+  - component: {fileID: 1270036159}
   m_Layer: 0
   m_Name: OrderRule
   m_TagString: Untagged
@@ -82685,8 +82858,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 2b6f9aa19bffe334a894ecc504318307, type: 3}
   DialogueID: rulelocked
+--- !u!114 &1270036161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270036154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 2b6f9aa19bffe334a894ecc504318307, type: 3}
   Flags: []
 --- !u!1001 &1279147067
 PrefabInstance:
@@ -82782,6 +82967,7 @@ GameObject:
   - component: {fileID: 1323975634}
   - component: {fileID: 1323975633}
   - component: {fileID: 1323975632}
+  - component: {fileID: 1323975636}
   - component: {fileID: 1323975635}
   m_Layer: 0
   m_Name: Scientist (1)
@@ -82964,8 +83150,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 3f60f8e56c332844ea982e1f9828efc4, type: 3}
   DialogueID: scientist2
+--- !u!114 &1323975636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323975629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 3f60f8e56c332844ea982e1f9828efc4, type: 3}
   Flags: []
 --- !u!1 &1328357784
 GameObject:
@@ -84286,6 +84484,7 @@ GameObject:
   - component: {fileID: 1419394903}
   - component: {fileID: 1419394902}
   - component: {fileID: 1419394901}
+  - component: {fileID: 1419394905}
   - component: {fileID: 1419394904}
   m_Layer: 0
   m_Name: LakeSignEntity
@@ -84468,8 +84667,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   DialogueID: river
+--- !u!114 &1419394905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419394898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   Flags: []
 --- !u!1 &1435101132
 GameObject:
@@ -85598,6 +85809,7 @@ GameObject:
   - component: {fileID: 1605166313}
   - component: {fileID: 1605166312}
   - component: {fileID: 1605166311}
+  - component: {fileID: 1605166315}
   - component: {fileID: 1605166314}
   m_Layer: 0
   m_Name: TownSignEntity
@@ -85780,8 +85992,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   DialogueID: town
+--- !u!114 &1605166315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605166308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 46704d7aa6a1ee54c91bdaf24d7261ef, type: 3}
   Flags: []
 --- !u!1 &1621091779
 GameObject:
@@ -85795,6 +86019,7 @@ GameObject:
   - component: {fileID: 1621091781}
   - component: {fileID: 1621091784}
   - component: {fileID: 1621091783}
+  - component: {fileID: 1621091786}
   - component: {fileID: 1621091785}
   m_Layer: 0
   m_Name: FishermanEntity
@@ -85977,8 +86202,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 200d10cfebc619747b84e7ea16099ec7, type: 3}
   DialogueID: main
+--- !u!114 &1621091786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621091779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 200d10cfebc619747b84e7ea16099ec7, type: 3}
   Flags: []
 --- !u!1001 &1667086918
 PrefabInstance:
@@ -87567,7 +87804,7 @@ Transform:
   m_GameObject: {fileID: 1813761978}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.14, z: -10}
+  m_LocalPosition: {x: -0.01, y: 0.09, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87675,8 +87912,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 2b6f9aa19bffe334a894ecc504318307, type: 3}
   DialogueID: reportsmain
+--- !u!114 &1826095694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826095686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 2b6f9aa19bffe334a894ecc504318307, type: 3}
   Flags: []
 --- !u!1 &1847297182
 GameObject:
@@ -87690,6 +87939,7 @@ GameObject:
   - component: {fileID: 1847297187}
   - component: {fileID: 1847297186}
   - component: {fileID: 1847297185}
+  - component: {fileID: 1847297189}
   - component: {fileID: 1847297188}
   m_Layer: 0
   m_Name: LorekeeperEntity
@@ -87872,8 +88122,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: 30b4cf0419a14db40be5f2862303dafc, type: 3}
   DialogueID: main
+--- !u!114 &1847297189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847297182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: 30b4cf0419a14db40be5f2862303dafc, type: 3}
   Flags: []
 --- !u!1001 &1853698238
 PrefabInstance:
@@ -101589,7 +101851,7 @@ Transform:
   m_GameObject: {fileID: 2035021915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.14, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101912,6 +102174,7 @@ GameObject:
   - component: {fileID: 2085190237}
   - component: {fileID: 2085190236}
   - component: {fileID: 2085190238}
+  - component: {fileID: 2085190240}
   - component: {fileID: 2085190239}
   m_Layer: 0
   m_Name: DeskScientist
@@ -102094,8 +102357,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcbe40be1c45c34eb25d3aad584d1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CScript: {fileID: 4900000, guid: d29b242ab99a83a4d8cfff5743aa562a, type: 3}
   DialogueID: main
+--- !u!114 &2085190240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085190234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9da2ca1ed16514c9664ac0d29d38ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Script: {fileID: 4900000, guid: d29b242ab99a83a4d8cfff5743aa562a, type: 3}
   Flags: []
 --- !u!1 &2092672181
 GameObject:
@@ -103121,6 +103396,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7815308933300404682, guid: 25fec0f46376c9b47b12a42ad406a702, type: 3}
       insertIndex: -1
       addedObject: {fileID: 566141866}
+    - targetCorrespondingSourceObject: {fileID: 7815308933300404682, guid: 25fec0f46376c9b47b12a42ad406a702, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 566141869}
     - targetCorrespondingSourceObject: {fileID: 7815308933300404682, guid: 25fec0f46376c9b47b12a42ad406a702, type: 3}
       insertIndex: -1
       addedObject: {fileID: 566141868}

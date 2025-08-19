@@ -24,6 +24,7 @@ dialogue seconditeration {
 
 dialogue takeself {
     "* Then we are the same"
+    raise destroy
     give "selfrule"
 }
 

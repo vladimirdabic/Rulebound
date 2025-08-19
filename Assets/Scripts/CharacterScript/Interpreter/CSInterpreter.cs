@@ -22,7 +22,7 @@ namespace VD.Rulebound.CS
         public static event DialogueHandler DialogueChainEnded;
         public static event DialogueLineHandler DialogueLine;
         public static event Action<string> DialoguePortrait;
-        public static event Action<string> DialogueCallback;
+        public static event Action<CharacterScript, string> DialogueCallback;
         public static event ChoiceHandler ChoicesStarted;
 
         public static event ItemHandler GiveItem;
@@ -226,7 +226,7 @@ namespace VD.Rulebound.CS
 
         public bool VisitRaise(DialogueStmt.Raise raise)
         {
-            DialogueCallback?.Invoke(raise.CallbackName);
+            DialogueCallback?.Invoke(CurrentScript, raise.CallbackName);
             return false;
         }
 

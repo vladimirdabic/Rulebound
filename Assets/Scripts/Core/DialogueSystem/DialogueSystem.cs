@@ -152,7 +152,7 @@ public class DialogueSystem : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Player");
     }
 
-    private void CSInterpreter_DialogueCallback(string callbackId)
+    private void CSInterpreter_DialogueCallback(CharacterScript script, string callbackId)
     {
         switch(callbackId)
         {
