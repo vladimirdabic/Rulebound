@@ -159,6 +159,10 @@ public class DialogueSystem : MonoBehaviour
             case "quit":
                 StateManager.Quit();
                 break;
+
+            case "save":
+                StateManager.Save();
+                break;
         }
     }
 

@@ -2,6 +2,8 @@ flag c_orderrule saved
 flag c_selfrule saved
 flag c_compassionrule saved
 
+flag c_selfrule_diag saved
+
 // Carrier world
 dialogue main {
 	if flag c_selfrule -> selfintrobranch
@@ -18,6 +20,9 @@ dialogue worldstart {
 
 // Branching paths
 dialogue selfintrobranch {
+	if flag c_selfrule_diag -> return
+	set c_selfrule_diag
+
 	"* Very clever" wait 4
 	"* I must say, very clever" wait 1
 	"* <color=red>You</color> managed to corrupt my <color=yellow>identity</color>"
@@ -27,5 +32,6 @@ dialogue selfintrobranch {
 	"* ..." wait 2
 	"* I can't tell us apart anymore" wait 3
 	"* <rotate=-5>Perhaps <color=red>you</color> are <color=yellow>me</color> now?" wait 4
-	raise quit
+
+	raise save
 }
