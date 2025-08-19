@@ -9,7 +9,12 @@ public class Loader : MonoBehaviour
         CSInterpreter.GlobalFlags.Clear();
         StateManager.Load();
 
-        // TODO: Decide where to next based on previous state (after adding other stuff ofc)
+        Flag flag;
+
+        if ((flag = CSInterpreter.GetFlag("c_selfrule")) != null && flag.Value) {
+            SceneManager.LoadScene("IntroScene");
+            return;
+        }
         
         SceneManager.LoadScene("MainMenuScene");
     }

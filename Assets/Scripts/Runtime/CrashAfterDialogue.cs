@@ -20,9 +20,6 @@ public class CrashAfterDialogue : MonoBehaviour
     {
         if (dialogueId != DialogueID) return;
 
-        if (SaveFlags)
-            StateManager.Save();
-
-        Application.Quit();
+        StateManager.Quit();
     }
 }

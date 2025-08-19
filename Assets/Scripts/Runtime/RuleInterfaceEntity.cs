@@ -99,7 +99,7 @@ public class RuleInterfaceEntity : MonoBehaviour, IInteractable
         switch (dialogueId)
         {
             case "abandonending":
-                SceneManager.LoadScene("MainMenuScene");
+                SceneManager.LoadScene("LoaderScene");
                 break;
 
             case "theendinterface":

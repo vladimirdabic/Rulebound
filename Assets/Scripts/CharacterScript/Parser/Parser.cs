@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace VD.Rulebound.CS
 {
@@ -54,64 +55,16 @@ namespace VD.Rulebound.CS
 
             while(Available() && !Check(TokenType.CLOSE_BRACE))
             {
-                if(Match(TokenType.SET))
-                {
-                    Token flagName = Consume(TokenType.ID, "Expected flag name after 'set'");
-                    stmts.Add(new DialogueStmt.FlagSet((string)flagName.Value, true));
-                    continue;
-                }
-
-                if (Match(TokenType.UNSET))
-                {
-                    Token flagName = Consume(TokenType.ID, "Expected flag name after 'unset'");
-                    stmts.Add(new DialogueStmt.FlagSet((string)flagName.Value, false));
-                    continue;
-                }
-
-                if (Match(TokenType.GIVE))
-                {
-                    Token itemId = Consume(TokenType.STR, "Expected item id string after 'give'");
-                    bool once = MatchIdentifier("once");
-                    stmts.Add(new DialogueStmt.GiveItem((string)itemId.Value, once));
-                    continue;
-                }
-
-                if (Match(TokenType.TAKE))
-                {
-                    Token itemId = Consume(TokenType.STR, "Expected item id string after 'take'");
-                    stmts.Add(new DialogueStmt.TakeItem((string)itemId.Value));
-                    continue;
-                }
-
-                if (Match(TokenType.IF))
-                {
-                    stmts.Add(ParseDiagCond());
-                    continue;
-                }
-
-                if(Match(TokenType.PORTRAIT))
-                {
-                    if (MatchIdentifier("none"))
-                        stmts.Add(new DialogueStmt.PortraitChange(null));
-                    else
-                    {
-                        Token portrait = Consume(TokenType.STR, "Expected portrait sprite string after 'portrait'");
-                        stmts.Add(new DialogueStmt.PortraitChange((string)portrait.Value));
-                    }
-                    continue;
-                }
-
                 if(Match(TokenType.CHOICES))
                 {
-                    if (choices == null) choices = new List<Declaration.Choice>();
+                    choices ??= new List<Declaration.Choice>();
                     choiceText = Match(TokenType.STR) ? (string)Prev().Value : null;
                     choices.AddRange(ParseChoices());
                     continue;
                 }
 
-                Token diagLine = Consume(TokenType.STR, "Expected dialogue line or dialogue instruction");
-                float secondsBefore = Match(TokenType.WAIT) ? (float)Consume(TokenType.NUM, "Expected wait time as a number after 'wait'").Value : 0;
-                stmts.Add(new DialogueStmt.Line((string)diagLine.Value, secondsBefore));
+                //DialogueStmt stmt = ParseDiagStmt();
+                stmts.Add(ParseDiagStmt());
             }
 
             Consume(TokenType.CLOSE_BRACE, "Expected '}' to close dialogue body");
@@ -140,6 +93,60 @@ namespace VD.Rulebound.CS
             Consume(TokenType.CLOSE_BRACE, "Expected '}' to close choices body");
 
             return choices;
+        }
+
+        private DialogueStmt ParseDiagStmt()
+        {
+            if (Match(TokenType.SET))
+            {
+                Token flagName = Consume(TokenType.ID, "Expected flag name after 'set'");
+                return new DialogueStmt.FlagSet((string)flagName.Value, true);
+            }
+
+            if (Match(TokenType.UNSET))
+            {
+                Token flagName = Consume(TokenType.ID, "Expected flag name after 'unset'");
+                return new DialogueStmt.FlagSet((string)flagName.Value, false);
+            }
+
+            if (Match(TokenType.GIVE))
+            {
+                Token itemId = Consume(TokenType.STR, "Expected item id string after 'give'");
+                bool once = MatchIdentifier("once");
+                return new DialogueStmt.GiveItem((string)itemId.Value, once);
+            }
+
+            if (Match(TokenType.TAKE))
+            {
+                Token itemId = Consume(TokenType.STR, "Expected item id string after 'take'");
+                return new DialogueStmt.TakeItem((string)itemId.Value);
+            }
+
+            if (Match(TokenType.IF))
+            {
+                return ParseDiagCond();
+            }
+
+            if (Match(TokenType.PORTRAIT))
+            {
+                if (MatchIdentifier("none"))
+                    return new DialogueStmt.PortraitChange(null);
+                else
+                {
+                    Token portrait = Consume(TokenType.STR, "Expected portrait sprite string after 'portrait'");
+                    return new DialogueStmt.PortraitChange((string)portrait.Value);
+                }
+            }
+
+            if (Match(TokenType.RAISE))
+            {
+                Token callback = Consume(TokenType.ID, "Expected callback after 'raise'");
+                return new DialogueStmt.Raise((string)callback.Value);
+            }
+
+            Token diagLine = Consume(TokenType.STR, "Expected dialogue line or dialogue instruction");
+            float secondsBefore = Match(TokenType.WAIT) ? (float)Consume(TokenType.NUM, "Expected wait time as a number after 'wait'").Value : 0;
+            return new DialogueStmt.Line((string)diagLine.Value, secondsBefore);
         }
 
         private DialogueStmt ParseDiagCond()

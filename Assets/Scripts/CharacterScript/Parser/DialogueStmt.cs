@@ -8,6 +8,7 @@ namespace VD.Rulebound.CS
         public interface IVisitor
         {
             bool VisitLine(Line line);
+            bool VisitRaise(Raise raise);
             bool VisitFlagSet(FlagSet flagSet);
             bool VisitGiveItem(GiveItem giveItem);
             bool VisitTakeItem(TakeItem takeItem);
@@ -23,7 +24,6 @@ namespace VD.Rulebound.CS
         {
             public string Text;
             public float SecondsBefore;
-            // TODO: Line specific portraits
 
             public Line(string text, float secondsBefore)
             {
@@ -34,6 +34,21 @@ namespace VD.Rulebound.CS
             public override bool Accept(IVisitor visitor)
             {
                 return visitor.VisitLine(this);
+            }
+        }
+
+        public class Raise : DialogueStmt
+        {
+            public string CallbackName;
+
+            public Raise(string callbackName)
+            {
+                CallbackName = callbackName;
+            }
+
+            public override bool Accept(IVisitor visitor)
+            {
+                return visitor.VisitRaise(this);
             }
         }
 

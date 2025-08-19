@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using VD.Rulebound.CS;
 
@@ -38,6 +39,18 @@ public class StateManager
         // Default data
         Data = new DataFile();
         CSInterpreter.GlobalFlags?.Clear();
+        DialogueSystem.Instance.ForceEndDialogue();
+    }
+
+    public static void Quit()
+    {
+        Save();
+
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
     [Serializable]

@@ -1,4 +1,11 @@
+flag c_orderrule saved
+flag c_selfrule saved
+flag c_compassionrule saved
+
+// Carrier world
 dialogue main {
+	if flag c_selfrule -> selfintrobranch
+
 	"* ..." wait 2
 	"* Please collect the THREE RULES"
 	"* They are scattered"
@@ -7,4 +14,18 @@ dialogue main {
 
 dialogue worldstart {
 	"* Once the rules are collected return\n  to this place and insert them into\n  the <i>interface</i>" wait 1
+}
+
+// Branching paths
+dialogue selfintrobranch {
+	"* Very clever" wait 4
+	"* I must say, very clever" wait 1
+	"* <color=red>You</color> managed to corrupt my <color=yellow>identity</color>"
+	"* But tell me..." wait 2
+	"* <alpha=#AA><i>What are you</i><alpha=#FF> then?" wait 3
+	"* <rotate=10><size=110%>Player?" wait 1
+	"* ..." wait 2
+	"* I can't tell us apart anymore" wait 3
+	"* <rotate=-5>Perhaps <color=red>you</color> are <color=yellow>me</color> now?" wait 4
+	raise quit
 }

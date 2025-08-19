@@ -35,13 +35,13 @@ dialogue corruptedending {
     "* Extracting Self..."
     "* Extracting Or-"
     "* <color=red><b>ERROR:</b></color> Integrity mismatch detected" wait 1
-    "* <color=red>Containment breach...</color>" wait 1
     "* Rule <rotate=20><size=120%>??????</size></rotate> cannot be resolved" wait 1
-    "* Carrier integrity <alpha=#88><voffset=0.1em>compromised" wait 2
+    "* Carrier integrity <rotate=-5><voffset=0.1em>compromised" wait 2
     "* <size=120%><color=red>SYSTEM HALT" wait 1
     "* <size=90%><cspace=10>UNDEFINED   BEHAVIOR" wait 1
     "* The <rotate=15>cycle</rotate>..." wait 1
     "* The cycle will <alpha=#55>not-" wait 1
+    raise quit
 }
 
 dialogue abandonending {

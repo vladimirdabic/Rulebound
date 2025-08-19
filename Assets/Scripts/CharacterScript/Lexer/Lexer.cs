@@ -30,6 +30,7 @@ namespace VD.Rulebound.CS
             {"not", TokenType.NOT},
             {"portrait", TokenType.PORTRAIT},
             {"choices", TokenType.CHOICES},
+            {"raise", TokenType.RAISE},
         };
 
         public Token[] Scan(string code, string ctxName = "unknown")

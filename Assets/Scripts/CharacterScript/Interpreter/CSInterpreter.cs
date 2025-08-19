@@ -22,6 +22,7 @@ namespace VD.Rulebound.CS
         public static event DialogueHandler DialogueChainEnded;
         public static event DialogueLineHandler DialogueLine;
         public static event Action<string> DialoguePortrait;
+        public static event Action<string> DialogueCallback;
         public static event ChoiceHandler ChoicesStarted;
 
         public static event ItemHandler GiveItem;
@@ -122,6 +123,13 @@ namespace VD.Rulebound.CS
             return f;
         }
 
+        public void Reset()
+        {
+            _currentDialogue = null;
+            CurrentScript = null;
+            _contextStack.Clear();
+        } 
+
         private void EndDialogue()
         {
             DialogueEnded?.Invoke(_currentDialogue.Name);
@@ -213,6 +221,12 @@ namespace VD.Rulebound.CS
         {
             _currentPortrait = portraitChange.Portrait;
             DialoguePortrait?.Invoke(portraitChange.Portrait);
+            return false;
+        }
+
+        public bool VisitRaise(DialogueStmt.Raise raise)
+        {
+            DialogueCallback?.Invoke(raise.CallbackName);
             return false;
         }
 

@@ -77,6 +77,7 @@ public class DialogueSystem : MonoBehaviour
         CSInterpreter.ChoicesStarted += Interpreter_ChoicesStarted;
         CSInterpreter.DialogueChainStarted += Interpreter_DialogueChainStarted;
         CSInterpreter.DialoguePortrait += Interpreter_DialoguePortrait;
+        CSInterpreter.DialogueCallback += CSInterpreter_DialogueCallback;
     }
 
     private void OnDisable()
@@ -91,6 +92,7 @@ public class DialogueSystem : MonoBehaviour
         CSInterpreter.ChoicesStarted -= Interpreter_ChoicesStarted;
         CSInterpreter.DialogueChainStarted -= Interpreter_DialogueChainStarted;
         CSInterpreter.DialoguePortrait -= Interpreter_DialoguePortrait;
+        CSInterpreter.DialogueCallback -= CSInterpreter_DialogueCallback;
     }
 
     public void PlayDialogue(string id, CharacterScript cs)
@@ -148,6 +150,16 @@ public class DialogueSystem : MonoBehaviour
         DialoguePanel.SetActive(false);
         if (ChoicePanel != null) ChoicePanel.SetActive(false);
         _playerInput.SwitchCurrentActionMap("Player");
+    }
+
+    private void CSInterpreter_DialogueCallback(string callbackId)
+    {
+        switch(callbackId)
+        {
+            case "quit":
+                StateManager.Quit();
+                break;
+        }
     }
 
     private void _advanceAction_performed(InputAction.CallbackContext obj)
@@ -247,5 +259,14 @@ public class DialogueSystem : MonoBehaviour
     private void MoveSelectorToChoice()
     {
         MoveSelector(Choices.transform.position - new Vector3(0, _selectorItemJump * _choiceIdx));
+    }
+
+    public void ForceEndDialogue()
+    {
+        if(_writingCoroutine != null) StopCoroutine(_writingCoroutine);
+        DialoguePanel.SetActive(false);
+        if (ChoicePanel != null) ChoicePanel.SetActive(false);
+        _playerInput.SwitchCurrentActionMap("Player");
+        _interpreter.Reset();
     }
 }
